@@ -2,7 +2,7 @@
 
 import Container from "./Container";
 import SectionHeading from "./SectionHeading";
-import { Star, Quote, Users, Heart } from "lucide-react";
+import { Star, Quote, Heart } from "lucide-react";
 
 const testimonials = [
   { 
@@ -55,8 +55,8 @@ export default function Testimonials() {
               
               {/* Testimonial text */}
               <blockquote className="text-textMain text-base md:text-lg leading-relaxed mb-4">
-                "{testimonial.text}"
-              </blockquote>
+  &quot;{testimonial.text}&quot;
+</blockquote>
               
               {/* Author info */}
               <figcaption className="flex items-center gap-3 pt-4 border-t border-gray-100">

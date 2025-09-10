@@ -1,5 +1,5 @@
 import Container from "./Container";
-import { Brain, ShieldCheck, Heart, Sparkles, Lock, MessageCircle } from "lucide-react";
+import { Brain, ShieldCheck, Sparkles, Lock, MessageCircle } from "lucide-react";
 
 export default function ProofRibbon() {
   const features = [

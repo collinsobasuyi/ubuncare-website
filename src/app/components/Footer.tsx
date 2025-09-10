@@ -95,7 +95,7 @@ export default function Footer() {
               <div className="flex-1">
                 <p className="text-sm font-medium text-textMain mb-1">Important Crisis Resources</p>
                 <p className="text-xs text-textBody leading-relaxed">
-                  If you're in crisis or thinking about harming yourself, seek immediate help: 
+                  If you are in crisis or thinking about harming yourself, seek immediate help: 
                   US: call or text 988 · UK: 116 123 (Samaritans) · Worldwide: <a href="https://www.iasp.info/resources/Crisis_Centres/" className="text-primary hover:underline inline-flex items-center gap-1">Find a crisis center <ExternalLink className="h-3 w-3" /></a>. 
                   In an emergency, call local emergency services.
                 </p>

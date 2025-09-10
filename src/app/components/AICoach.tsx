@@ -14,7 +14,6 @@ import {
   AlertTriangle,
   MessageCircle,
   User,
-  ChevronRight,
   Zap,
 } from "lucide-react";
 

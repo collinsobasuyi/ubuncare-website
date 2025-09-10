@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Container from "./Container";
-import { CheckCircle, Lock, Users } from "lucide-react";
+import { CheckCircle, Lock } from "lucide-react";
 
 export default function WaitlistSection() {
   const [email, setEmail] = useState("");
@@ -49,7 +49,7 @@ export default function WaitlistSection() {
           
           <p className="text-lg text-textBody leading-relaxed mb-8">
             Be among the first to experience compassionate AI mental health support. 
-            We'll notify you when the private beta is ready—no spam, just meaningful updates.
+            We will notify you when the private beta is ready—no spam, just meaningful updates.
           </p>
         </div>
 
@@ -77,10 +77,10 @@ export default function WaitlistSection() {
                 <CheckCircle className="h-8 w-8 text-green-600" />
               </div>
               <h3 className="text-xl font-semibold text-textMain mb-2">
-                You're on the list!
+                You are on the list!
               </h3>
               <p className="text-textBody">
-                Thanks for joining. We'll be in touch when Ubuncare is ready.
+                Thanks for joining. We will be in touch when Ubuncare is ready.
               </p>
             </div>
           ) : (

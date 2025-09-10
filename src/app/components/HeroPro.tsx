@@ -52,7 +52,7 @@ export default function HeroPro() {
       top: scrollRef.current.scrollHeight,
       behavior: "smooth",
     });
-  }, [index, isTyping]);
+  }, [index, isTyping, conversation]);
 
   const renderMessage = (m: Message, i: number) => {
     const isAI = m.speaker === "ai";
