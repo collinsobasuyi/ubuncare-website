@@ -1,0 +1,114 @@
+/* globals.css — Tailwind v4 */
+@import "tailwindcss";
+
+/* =========================
+   Ubuncare design tokens
+   ========================= */
+@theme {
+  /* Brand colors */
+  --color-primary:           #2D9CDB;   /* accents, links, icons */
+  --color-primary-strong:    #2563EB;   /* buttons on white (AA) */
+  --color-bgSoft:            #F5F5F5;   /* soft surface */
+  --color-textMain:          #000000;   /* headings */
+  --color-textBody:          #4F4F4F;   /* body copy */
+
+  /* Radii & shadows */
+  --radius-card: 1rem;
+  --radius-pill: 9999px;
+  --shadow-soft: 0 10px 30px rgba(0,0,0,0.06);
+
+  /* Convenience text tokens */
+  --text-h1: 32px;
+  --text-h2: 24px;
+  --text-body: 18px;
+
+  /* Enforce minimum text sizes site-wide */
+  --text-xs: 14px;
+  --text-sm: 14px;
+
+  /* Global page background tokens */
+  --page-bg-from: #ffffff;
+  --page-bg-to:   #eff6ff;   /* blue-50 */
+  --page-bg-from-dark: #0a0a0a;
+  --page-bg-to-dark:   #0b1220;
+}
+
+/* =========================
+   Base styles
+   ========================= */
+@layer base {
+  html { font-size: 16px; scroll-behavior: smooth; }
+  body { line-height: 1.6; }
+
+  :root {
+    --background: #ffffff;
+    --foreground: #171717;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --background: #0a0a0a;
+      --foreground: #ededed;
+    }
+  }
+
+  html, body {
+    min-height: 100%;
+    background: linear-gradient(135deg, var(--page-bg-from) 0%, var(--page-bg-to) 100%);
+    color: var(--foreground);
+    font-family: Arial, Helvetica, sans-serif;
+    max-width: 100%;
+    overflow-x: hidden; /* prevent sideways scroll */
+  }
+  @media (prefers-color-scheme: dark) {
+    body {
+      background: linear-gradient(135deg, var(--page-bg-from-dark) 0%, var(--page-bg-to-dark) 100%);
+    }
+  }
+
+  img, video, canvas, svg { max-width: 100%; height: auto; }
+
+  ::selection {
+    background: color-mix(in oklab, var(--color-primary) 20%, transparent);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+}
+
+/* =========================
+   Utilities
+   ========================= */
+@layer utilities {
+  /* Floating decoration (if used elsewhere) */
+  @keyframes ubun-float {
+    0%   { transform: translateY(0) }
+    50%  { transform: translateY(-10px) }
+    100% { transform: translateY(0) }
+  }
+  .animate-float {
+    animation: ubun-float 5s ease-in-out infinite;
+  }
+
+  /* Slide-in animation for chat bubbles */
+  @keyframes ubun-slide-in {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .message-slide-in {
+    animation: ubun-slide-in 0.3s ease-out forwards;
+  }
+
+  /* Slim, subtle scrollbar for the device chat */
+  .device-scroll { scrollbar-width: thin; scrollbar-color: rgba(255,255,255,.3) transparent; }
+  .device-scroll::-webkit-scrollbar { width: 6px; }
+  .device-scroll::-webkit-scrollbar-thumb { background: rgba(255,255,255,.3); border-radius: 9999px; }
+  .device-scroll::-webkit-scrollbar-track { background: transparent; }
+
+  /* Respect reduced-motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-float, .animate-bounce, .message-slide-in { animation: none !important; }
+    html { scroll-behavior: auto; }
+  }
+}
