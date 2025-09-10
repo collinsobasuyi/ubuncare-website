@@ -11,12 +11,12 @@ export default function HeroPro() {
   const conversation: Message[] = [
     { speaker: "ai",   text: "Hi there! How are you feeling today?", delay: 800 },
     { speaker: "user", text: "A bit overwhelmed with work deadlines…", delay: 2200 },
-    { speaker: "ai",   text: "Thanks for sharing. Let's name the thought that's looping.", delay: 2600 },
-    { speaker: "user", text: "I'm worried I'll mess up the presentation.", delay: 2400 },
-    { speaker: "ai",   text: "That sounds like catastrophising. What's one piece of evidence against it?", delay: 3200 },
+    { speaker: "ai",   text: "Thanks for sharing. Let&apos;s name the thought that&apos;s looping.", delay: 2600 },
+    { speaker: "user", text: "I&apos;m worried I&apos;ll mess up the presentation.", delay: 2400 },
+    { speaker: "ai",   text: "That sounds like catastrophising. What&apos;s one piece of evidence against it?", delay: 3200 },
     { speaker: "user", text: "I presented last month and it went fine.", delay: 2200 },
-    { speaker: "ai",   text: "Great. Let's reframe it:", delay: 1800 },
-    { speaker: "ai",   text: "I'm prepared, and I can handle questions.", delay: 2200 },
+    { speaker: "ai",   text: "Great. Let&apos;s reframe it:", delay: 1800 },
+    { speaker: "ai",   text: "I&apos;m prepared, and I can handle questions.", delay: 2200 },
     { speaker: "ai",   text: "Pick one tiny action: review slides 5 min, ask a teammate, or take a 3-minute breath.", delay: 3600 },
   ];
 
@@ -44,7 +44,7 @@ export default function HeroPro() {
       }
     }, stepDelay);
     return () => clearTimeout(timer);
-  }, [index]);
+  }, [index, conversation]);
 
   // Auto-scroll to latest bubble
   useEffect(() => {

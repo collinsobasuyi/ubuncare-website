@@ -16,16 +16,13 @@ export default function Page() {
       <HeroPro />
       <FeaturesSections />
       <SocialProof />
-      {/* <ProofRibbon /> */}
       <IconCloud />
       <HowItWorks />
       <AICoach />
-      {/* <Benefits /> */}
       <Testimonials />
       <SecurityStrip />
       <WaitlistForm />
       <FAQ />
-      {/* <FinalCTA /> */}
     </>
   );
 }

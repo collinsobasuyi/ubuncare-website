@@ -28,7 +28,7 @@ const faqs = [
   },
   { 
     q: "Is Ubuncare suitable for crisis situations?", 
-    a: "No. Ubuncare is not designed for crisis support. If you're experiencing a mental health emergency, please contact emergency services or a crisis hotline immediately. We provide clear crisis resources within the app.",
+    a: "No. Ubuncare is not designed for crisis support. If you&apos;re experiencing a mental health emergency, please contact emergency services or a crisis hotline immediately. We provide clear crisis resources within the app.",
     icon: HelpCircle
   },
   { 

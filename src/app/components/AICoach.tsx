@@ -22,22 +22,22 @@ type TabKey = "anxiety" | "motivation" | "sleep";
 
 const scenarios: Record<TabKey, Msg[]> = {
   anxiety: [
-    { role: "user", text: "I'm feeling really anxious about my presentation tomorrow." },
-    { role: "assistant", text: "I understand that feeling. Let's take a moment together. What's the main thought that's coming up for you?" },
-    { role: "user", text: "I'm worried I'll forget everything and everyone will think I'm incompetent." },
-    { role: "assistant", text: "Let's examine that thought. What evidence supports it? What evidence challenges it?" },
-    { role: "assistant", text: "A balanced perspective might be: 'I've prepared, and even if I make a mistake, it doesn't define my worth.'" },
+    { role: "user", text: "I&apos;m feeling really anxious about my presentation tomorrow." },
+    { role: "assistant", text: "I understand that feeling. Let&apos;s take a moment together. What&apos;s the main thought that&apos;s coming up for you?" },
+    { role: "user", text: "I&apos;m worried I&apos;ll forget everything and everyone will think I&apos;m incompetent." },
+    { role: "assistant", text: "Let&apos;s examine that thought. What evidence supports it? What evidence challenges it?" },
+    { role: "assistant", text: "A balanced perspective might be: &apos;I&apos;ve prepared, and even if I make a mistake, it doesn&apos;t define my worth.&apos;" },
   ],
   motivation: [
-    { role: "user", text: "I can't seem to start this important project." },
-    { role: "assistant", text: "That's okay. Let's break it down. What's the absolute smallest first step you can take?" },
+    { role: "user", text: "I can&apos;t seem to start this important project." },
+    { role: "assistant", text: "That&apos;s okay. Let&apos;s break it down. What&apos;s the absolute smallest first step you can take?" },
     { role: "user", text: "Maybe just open the document and write one sentence." },
     { role: "assistant", text: "Perfect. Set a 5-minute timer for that one sentence. You can stop after or continue if you feel able." },
   ],
   sleep: [
-    { role: "user", text: "My mind won't stop racing when I try to sleep." },
-    { role: "assistant", text: "Let's try a quick wind-down exercise. Name three things you're grateful for today." },
-    { role: "assistant", text: "Now, let's practice a breathing technique: inhale for 4 counts, hold for 7, exhale for 8." },
+    { role: "user", text: "My mind won&apos;t stop racing when I try to sleep." },
+    { role: "assistant", text: "Let&apos;s try a quick wind-down exercise. Name three things you&apos;re grateful for today." },
+    { role: "assistant", text: "Now, let&apos;s practice a breathing technique: inhale for 4 counts, hold for 7, exhale for 8." },
   ],
 };
 
@@ -110,7 +110,9 @@ export default function AICoach() {
                 return (
                   <button
                     key={t.key}
-                    ref={(el) => (tabRefs.current[i] = el)}
+                    ref={(el) => {
+                      tabRefs.current[i] = el;
+                    }}
                     type="button"
                     role="tab"
                     id={`tab-${t.key}`}
