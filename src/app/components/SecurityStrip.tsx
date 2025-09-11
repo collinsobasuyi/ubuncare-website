@@ -3,12 +3,24 @@ import { Shield, Lock, Download, Ban, EyeOff, Server } from "lucide-react";
 
 export default function SecurityStrip() {
   const securityFeatures = [
-    { icon: Lock, text: "End-to-end encryption", description: "All data encrypted in transit and at rest" },
-    { icon: Shield, text: "HTTPS everywhere", description: "Secure connections for all interactions" },
+    {
+      icon: Lock,
+      text: "End-to-end encryption",
+      description: "All data encrypted in transit and at rest",
+    },
+    {
+      icon: Shield,
+      text: "HTTPS everywhere",
+      description: "Secure connections for all interactions",
+    },
     { icon: Download, text: "Export anytime", description: "Full control over your data" },
     { icon: Ban, text: "No ads ever", description: "Completely ad-free experience" },
     { icon: EyeOff, text: "Private by design", description: "Your entries stay confidential" },
-    { icon: Server, text: "Secure infrastructure", description: "Enterprise-grade security measures" },
+    {
+      icon: Server,
+      text: "Secure infrastructure",
+      description: "Enterprise-grade security measures",
+    },
   ];
 
   return (
@@ -23,7 +35,8 @@ export default function SecurityStrip() {
             Your safety is our priority
           </h2>
           <p className="text-lg text-textBody leading-relaxed">
-            We built Ubuncare with privacy and security at its core. Your mental health journey remains confidential and protected.
+            We built Ubuncare with privacy and security at its core. Your mental health journey
+            remains confidential and protected.
           </p>
         </div>
 
@@ -31,8 +44,8 @@ export default function SecurityStrip() {
           {securityFeatures.map((feature, index) => {
             const IconComponent = feature.icon;
             return (
-              <div 
-                key={index} 
+              <div
+                key={index}
                 className="group bg-white rounded-xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300 hover:-translate-y-1"
               >
                 <div className="flex items-start gap-4">
@@ -58,7 +71,7 @@ export default function SecurityStrip() {
                 Regularly audited and compliant with data protection regulations
               </p>
             </div>
-            
+
             <div className="flex flex-wrap justify-center gap-4">
               <div className="bg-white rounded-lg px-4 py-2 shadow-sm border border-gray-100">
                 <span className="text-sm font-medium text-textMain">GDPR Compliant</span>

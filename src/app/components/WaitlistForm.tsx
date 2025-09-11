@@ -12,7 +12,7 @@ export default function WaitlistSection() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     // Simulate API call
     try {
       // Replace with your actual API endpoint
@@ -23,7 +23,7 @@ export default function WaitlistSection() {
         },
         body: JSON.stringify({ email }),
       });
-      
+
       setIsSubmitted(true);
       setEmail("");
     } catch (error) {
@@ -42,14 +42,18 @@ export default function WaitlistSection() {
             <span className="h-2 w-2 rounded-full bg-green-500 animate-pulse"></span>
             Early Access Available
           </div>
-          
+
           <h2 className="text-3xl md:text-4xl font-bold text-textMain mb-4">
-            Join the <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-600">Ubuncare</span> Waitlist
+            Join the{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-600">
+              Ubuncare
+            </span>{" "}
+            Waitlist
           </h2>
-          
+
           <p className="text-lg text-textBody leading-relaxed mb-8">
-            Be among the first to experience compassionate AI mental health support. 
-            We will notify you when the private beta is ready—no spam, just meaningful updates.
+            Be among the first to experience compassionate AI mental health support. We will notify
+            you when the private beta is ready—no spam, just meaningful updates.
           </p>
         </div>
 
@@ -76,9 +80,7 @@ export default function WaitlistSection() {
               <div className="bg-green-50 rounded-full p-3 inline-flex mb-4">
                 <CheckCircle className="h-8 w-8 text-green-600" />
               </div>
-              <h3 className="text-xl font-semibold text-textMain mb-2">
-                You are on the list!
-              </h3>
+              <h3 className="text-xl font-semibold text-textMain mb-2">You are on the list!</h3>
               <p className="text-textBody">
                 Thanks for joining. We will be in touch when Ubuncare is ready.
               </p>
@@ -105,7 +107,7 @@ export default function WaitlistSection() {
               </div>
             </form>
           )}
-          
+
           {/* Privacy assurance */}
           <div className="mt-6 pt-6 border-t border-gray-100">
             <div className="flex items-center justify-center gap-2 text-sm text-textBody">
@@ -123,7 +125,9 @@ export default function WaitlistSection() {
               <div className="h-8 w-8 rounded-full bg-gradient-to-r from-purple-500 to-purple-600 border-2 border-white"></div>
               <div className="h-8 w-8 rounded-full bg-gradient-to-r from-green-500 to-green-600 border-2 border-white"></div>
             </div>
-            <span>Join <strong className="text-textMain">217+ people</strong> on the waitlist</span>
+            <span>
+              Join <strong className="text-textMain">217+ people</strong> on the waitlist
+            </span>
           </div>
         </div>
       </Container>

@@ -1,0 +1,13 @@
+# Ignore artifacts
+node_modules
+.next
+out
+build
+dist
+
+# Ignore config
+package-lock.json
+yarn.lock
+
+# Ignore generated types
+.next/types
