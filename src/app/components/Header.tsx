@@ -34,7 +34,7 @@ export default function Header() {
   return (
     <>
       <header
-        className={`sticky top-0 z-50 transition-all duration-300 ${
+        className={`fixed top-0 w-full z-50 transition-all duration-300 ${
           scrolled
             ? "bg-white/95 backdrop-blur-lg shadow-sm border-b border-gray-100"
             : "bg-white/80 backdrop-blur-md border-b border-transparent"
@@ -42,14 +42,17 @@ export default function Header() {
       >
         <Container className="h-16 flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 font-semibold text-textMain group">
+          <Link
+            href="/"
+            className="flex items-center gap-2 font-semibold text-textMain group"
+          >
             <div className="bg-primary/10 p-1.5 rounded-lg group-hover:bg-primary/20 transition-colors">
               <Brain className="h-5 w-5 text-primary" />
             </div>
             <span className="text-lg">Ubuncare</span>
           </Link>
 
-          {/* Desktop/Tablet nav (≥ md) - IMPROVED TEXT SIZE */}
+          {/* Desktop/Tablet nav */}
           <nav className="hidden md:flex items-center gap-8 text-[16px]">
             <a
               href="#features"
@@ -58,17 +61,18 @@ export default function Header() {
               Features
             </a>
             <a
+              href="#why-it-works"
+              className="text-textBody hover:text-primary transition-colors font-medium py-2"
+            >
+              Why it Works
+            </a>
+            <a
               href="#how"
               className="text-textBody hover:text-primary transition-colors font-medium py-2"
             >
-              How it works
+              How it Works
             </a>
-            <Link
-              href="/science"
-              className="text-textBody hover:text-primary transition-colors font-medium py-2"
-            >
-              Science
-            </Link>
+
             <a
               href="#faq"
               className="text-textBody hover:text-primary transition-colors font-medium py-2"
@@ -89,7 +93,7 @@ export default function Header() {
               href="#join"
               className="hidden sm:inline-flex items-center gap-1 rounded-full bg-gradient-to-r from-primary to-purple-600 text-white px-5 py-2.5 text-[15px] font-semibold shadow-md hover:shadow-lg transition-all duration-200 hover:-translate-y-0.5"
             >
-              Join Waitlist
+              Get Early Access
               <ChevronRight className="h-4 w-4" />
             </a>
             <button
@@ -106,7 +110,7 @@ export default function Header() {
         </Container>
       </header>
 
-      {/* Mobile menu with improved text size */}
+      {/* Mobile menu */}
       {mounted &&
         createPortal(
           <div
@@ -152,48 +156,37 @@ export default function Header() {
                 </button>
               </div>
 
-              {/* Items with improved text size */}
+              {/* Menu Items */}
               <nav className="flex-1 overflow-y-auto py-6">
                 <ul className="space-y-2 px-4">
                   {[
-                    { href: "#features", label: "Features", type: "a" },
-                    { href: "#how", label: "How it works", type: "a" },
-                    { href: "/science", label: "Science", type: "link" },
-                    { href: "#faq", label: "FAQs", type: "a" },
-                    { href: "/contact", label: "Contact", type: "link" },
+                    { href: "#features", label: "Features" },
+                    { href: "#why-it-works", label: "Why it Works" },
+                    { href: "#how", label: "How it Works" },
+                    { href: "#faq", label: "FAQs" },
+                    { href: "/contact", label: "Contact" },
                   ].map((item) => (
                     <li key={item.href}>
-                      {item.type === "a" ? (
-                        <a
-                          href={item.href}
-                          onClick={() => setOpen(false)}
-                          className="flex items-center justify-between px-4 py-4 rounded-lg text-[16px] text-textBody hover:bg-gray-50 hover:text-primary transition-colors group"
-                        >
-                          <span className="font-medium">{item.label}</span>
-                          <ChevronRight className="h-4 w-4 text-gray-400 group-hover:text-primary transition-colors" />
-                        </a>
-                      ) : (
-                        <Link
-                          href={item.href}
-                          onClick={() => setOpen(false)}
-                          className="flex items-center justify-between px-4 py-4 rounded-lg text-[16px] text-textBody hover:bg-gray-50 hover:text-primary transition-colors group"
-                        >
-                          <span className="font-medium">{item.label}</span>
-                          <ChevronRight className="h-4 w-4 text-gray-400 group-hover:text-primary transition-colors" />
-                        </Link>
-                      )}
+                      <a
+                        href={item.href}
+                        onClick={() => setOpen(false)}
+                        className="flex items-center justify-between px-4 py-4 rounded-lg text-[16px] text-textBody hover:bg-gray-50 hover:text-primary transition-colors group"
+                      >
+                        <span className="font-medium">{item.label}</span>
+                        <ChevronRight className="h-4 w-4 text-gray-400 group-hover:text-primary transition-colors" />
+                      </a>
                     </li>
                   ))}
                 </ul>
 
-                {/* CTA under the list */}
+                {/* CTA under menu */}
                 <div className="px-4 mt-8">
                   <a
                     href="#join"
                     onClick={() => setOpen(false)}
                     className="flex items-center justify-center gap-2 w-full text-center rounded-full bg-gradient-to-r from-primary to-purple-600 text-white px-6 py-3 text-[16px] font-semibold shadow-md hover:shadow-lg transition-all duration-200 hover:-translate-y-0.5"
                   >
-                    Join Waitlist
+                    Get Early Access
                     <ChevronRight className="h-4 w-4" />
                   </a>
                 </div>
