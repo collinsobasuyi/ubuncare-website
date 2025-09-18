@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Container from "./Container";
-import { CheckCircle, Lock } from "lucide-react";
+import { CheckCircle, Lock, Star } from "lucide-react";
 
 export default function WaitlistSection() {
   const [email, setEmail] = useState("");
@@ -11,124 +11,86 @@ export default function WaitlistSection() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
+    if (!email || isSubmitting) return;
 
-    // Simulate API call
+    setIsSubmitting(true);
     try {
-      // Replace with your actual API endpoint
+      // Replace with your actual API
       await fetch("/api/waitlist", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),
       });
 
       setIsSubmitted(true);
       setEmail("");
-    } catch (error) {
-      console.error("Error joining waitlist:", error);
+    } catch (err) {
+      console.error("Error joining waitlist:", err);
     } finally {
       setIsSubmitting(false);
     }
   };
 
   return (
-    <section id="join" className="py-16 md:py-20 bg-gradient-to-b from-blue-50/30 to-white">
-      <Container className="text-center max-w-2xl mx-auto">
+    <section id="join" className="py-10 md:py-18 bg-gradient-to-b from-purple-50 to-white">
+      <Container className="max-w-2xl mx-auto">
         {/* Header */}
-        <div className="relative">
-          <div className="inline-flex items-center gap-2 bg-white rounded-full px-4 py-2 text-sm font-medium text-primary mb-6 shadow-sm border border-gray-100">
-            <span className="h-2 w-2 rounded-full bg-green-500 animate-pulse"></span>
-            Early Access Available
+        <div className="text-center mb-12">
+          <div className="inline-flex items-center gap-2 bg-purple-100 rounded-full px-5 py-2 mb-6">
+            <Star className="h-4 w-4 text-purple-600" />
+            <span className="font-semibold text-purple-700">Join the Waitlist</span>
           </div>
 
-          <h2 className="text-3xl md:text-4xl font-bold text-textMain mb-4">
-            Join the{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-600">
-              Ubuncare
-            </span>{" "}
-            Waitlist
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            Be the first to experience{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-purple-800">
+              compassionate AI support
+            </span>
           </h2>
 
-          <p className="text-lg text-textBody leading-relaxed mb-8">
-            Be among the first to experience compassionate AI mental health support. We will notify
-            you when the private beta is ready—no spam, just meaningful updates.
+          <p className="text-lg text-gray-600">
+            Get early access to Ubuncare and start transforming your mental wellbeing journey.
           </p>
         </div>
 
-        {/* Benefits list */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10">
-          <div className="flex items-center justify-center gap-2 text-sm text-textBody bg-white p-3 rounded-lg shadow-sm border border-gray-100">
-            <CheckCircle className="h-4 w-4 text-green-500" />
-            Early access
-          </div>
-          <div className="flex items-center justify-center gap-2 text-sm text-textBody bg-white p-3 rounded-lg shadow-sm border border-gray-100">
-            <CheckCircle className="h-4 w-4 text-green-500" />
-            Exclusive content
-          </div>
-          <div className="flex items-center justify-center gap-2 text-sm text-textBody bg-white p-3 rounded-lg shadow-sm border border-gray-100">
-            <CheckCircle className="h-4 w-4 text-green-500" />
-            No spam ever
-          </div>
-        </div>
-
         {/* Waitlist Form */}
-        <div className="bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-gray-100">
+        <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
           {isSubmitted ? (
             <div className="text-center py-8">
-              <div className="bg-green-50 rounded-full p-3 inline-flex mb-4">
+              <div className="bg-green-50 rounded-full p-4 inline-flex mb-5">
                 <CheckCircle className="h-8 w-8 text-green-600" />
               </div>
-              <h3 className="text-xl font-semibold text-textMain mb-2">You are on the list!</h3>
-              <p className="text-textBody">
-                Thanks for joining. We will be in touch when Ubuncare is ready.
-              </p>
+              <h3 className="text-2xl font-semibold text-gray-900 mb-3">You’re on the list!</h3>
+              <p className="text-gray-600">We’ll notify you as soon as Ubuncare is ready.</p>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-5">
               <div className="flex flex-col sm:flex-row gap-3">
                 <input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Enter your email address"
+                  placeholder="Enter your email"
                   required
-                  className="flex-1 px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all"
                   disabled={isSubmitting}
+                  className="flex-1 px-5 py-4 rounded-xl border border-gray-300 focus:ring-2 focus:ring-purple-500 outline-none placeholder-gray-400"
                 />
                 <button
                   type="submit"
-                  disabled={isSubmitting}
-                  className="px-6 py-3 bg-gradient-to-r from-primary to-purple-600 text-white font-semibold rounded-lg hover:shadow-md transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                  disabled={isSubmitting || !email}
+                  className="px-8 py-4 bg-gradient-to-r from-purple-600 to-purple-700 text-white font-semibold rounded-xl hover:shadow-lg transition-all disabled:opacity-50"
                 >
                   {isSubmitting ? "Joining..." : "Join Waitlist"}
                 </button>
               </div>
+
+              {/* Privacy */}
+              <div className="flex items-center justify-center gap-2 text-sm text-gray-500">
+                <Lock className="h-4 w-4 text-purple-500" />
+                <span>Your email stays private and secure.</span>
+              </div>
             </form>
           )}
-
-          {/* Privacy assurance */}
-          <div className="mt-6 pt-6 border-t border-gray-100">
-            <div className="flex items-center justify-center gap-2 text-sm text-textBody">
-              <Lock className="h-4 w-4 text-primary" />
-              Your information is secure and private. We respect your data.
-            </div>
-          </div>
-        </div>
-
-        {/* Social proof */}
-        <div className="mt-10">
-          <div className="flex items-center justify-center gap-4 text-sm text-textBody">
-            <div className="flex -space-x-2">
-              <div className="h-8 w-8 rounded-full bg-gradient-to-r from-primary to-blue-600 border-2 border-white"></div>
-              <div className="h-8 w-8 rounded-full bg-gradient-to-r from-purple-500 to-purple-600 border-2 border-white"></div>
-              <div className="h-8 w-8 rounded-full bg-gradient-to-r from-green-500 to-green-600 border-2 border-white"></div>
-            </div>
-            <span>
-              Join <strong className="text-textMain">217+ people</strong> on the waitlist
-            </span>
-          </div>
         </div>
       </Container>
     </section>

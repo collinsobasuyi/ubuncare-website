@@ -66,12 +66,12 @@ export default function Header() {
             >
               Why it Works
             </a>
-            <a
+            {/* <a
               href="#how"
               className="text-textBody hover:text-primary transition-colors font-medium py-2"
             >
               How it Works
-            </a>
+            </a> */}
 
             <a
               href="#faq"

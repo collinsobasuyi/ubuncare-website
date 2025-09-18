@@ -184,7 +184,7 @@ export default function WhyItWorks() {
   return (
     <section
       id="why-it-works"
-      className="py-16 md:py-24 bg-gradient-to-b from-blue-50/30 to-white"
+      className="py-16 md:py-24 bg-gradient-to-b from-white to-purple-50"
     >
       <Container>
         {/* Header */}

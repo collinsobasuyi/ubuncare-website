@@ -51,7 +51,7 @@ const features = [
 
 export default function FeaturesAndHowItWorks() {
   return (
-    <section id="features" className="py-20 md:py-28  bg-gray-50">
+    <section id="features" className="py-10 md:py-18 bg-gradient-to-b from-purple-50 to-white">
       <Container>
         {/* Header */}
         <div className="text-center max-w-4xl mx-auto mb-16">
