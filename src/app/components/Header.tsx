@@ -1,203 +1,184 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import Link from "next/link";
-import Container from "./Container";
-import { Brain, Menu, X, ChevronRight } from "lucide-react";
+import { usePathname } from "next/navigation";
+import { Menu, X, Heart, ChevronRight } from "lucide-react";
 
 export default function Header() {
-  const [open, setOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => setMounted(true), []);
 
-  // Handle scroll effect
+  // Scroll detection
   useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      setScrolled(window.scrollY > 10);
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          setScrolled(window.scrollY > 20);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // lock scroll on menu
   useEffect(() => {
-    const root = document.documentElement;
-    root.style.overflow = open ? "hidden" : "";
+    document.body.style.overflow = isOpen ? "hidden" : "unset";
     return () => {
-      root.style.overflow = "";
+      document.body.style.overflow = "unset";
     };
-  }, [open]);
+  }, [isOpen]);
+
+  const menuItems = [
+    { href: "#how-it-works", label: "How It Works" },
+    { href: "#ai-coach", label:"Reflection Space"},
+    { href: "#features", label: "What You'll Get" },
+    { href: "#the-science", label: "The Science" },
+    { href: "#how-we-help", label: "How We Help" },
+    { href: "#crisis-support", label: "Crisis Support" },
+    { href: "/contact", label: "Get in Touch" },
+  ];
+
+  const isActive = (href: string) =>
+    href === "/" ? pathname === "/" : pathname.startsWith(href);
+
+  const getHeaderBg = () => {
+    if (pathname === "/contact") {
+      return "bg-gradient-to-r from-purple-600 to-purple-700 text-white shadow-lg";
+    }
+    return scrolled
+      ? "bg-gradient-to-b from-white/95 to-white/90 backdrop-blur-xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] border-b border-gray-200/40"
+      : "bg-gradient-to-b from-[#F8F6FF]/90 to-white/80 backdrop-blur-lg shadow-[0_2px_10px_rgba(147,51,234,0.05)]";
+  };
 
   return (
     <>
       <header
-        className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-          scrolled
-            ? "bg-white/95 backdrop-blur-lg shadow-sm border-b border-gray-100"
-            : "bg-white/80 backdrop-blur-md border-b border-transparent"
-        }`}
+        className={`fixed top-0 left-0 z-50 w-full transition-all duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)] ${getHeaderBg()}`}
       >
-        <Container className="h-16 flex items-center justify-between">
-          {/* Logo */}
-          <Link
-            href="/"
-            className="flex items-center gap-2 font-semibold text-textMain group"
-          >
-            <div className="bg-primary/10 p-1.5 rounded-lg group-hover:bg-primary/20 transition-colors">
-              <Brain className="h-5 w-5 text-primary" />
-            </div>
-            <span className="text-lg">Ubuncare</span>
-          </Link>
-
-          {/* Desktop/Tablet nav */}
-          <nav className="hidden md:flex items-center gap-8 text-[16px]">
-            <a
-              href="#features"
-              className="text-textBody hover:text-primary transition-colors font-medium py-2"
-            >
-              Features
-            </a>
-            <a
-              href="#why-it-works"
-              className="text-textBody hover:text-primary transition-colors font-medium py-2"
-            >
-              Why it Works
-            </a>
-            {/* <a
-              href="#how"
-              className="text-textBody hover:text-primary transition-colors font-medium py-2"
-            >
-              How it Works
-            </a> */}
-
-            <a
-              href="#faq"
-              className="text-textBody hover:text-primary transition-colors font-medium py-2"
-            >
-              FAQs
-            </a>
-            <Link
-              href="/contact"
-              className="text-textBody hover:text-primary transition-colors font-medium py-2"
-            >
-              Contact
+        <div className="max-w-[100rem] mx-auto px-8 sm:px-10 lg:px-16 xl:px-20">
+          <div className="flex justify-between items-center h-20">
+            {/* LOGO */}
+            <Link href="/" onClick={() => setIsOpen(false)} className="flex items-center space-x-3 group">
+              <div className="bg-gradient-to-br from-purple-500 to-purple-600 p-2 rounded-xl group-hover:scale-105 transition-all duration-300 shadow-md">
+                <Heart className="h-6 w-6 text-white" />
+              </div>
+              <div className="flex flex-col">
+                <span className="text-2xl font-bold text-gray-900 tracking-tight">Ubuncare</span>
+                <span className="text-sm text-purple-600 font-medium hidden sm:block tracking-wide">
+                  Compassionate Support
+                </span>
+              </div>
             </Link>
-          </nav>
 
-          {/* CTA + Hamburger */}
-          <div className="flex items-center gap-4">
-            <a
-              href="#join"
-              className="hidden sm:inline-flex items-center gap-1 rounded-full bg-gradient-to-r from-primary to-purple-600 text-white px-5 py-2.5 text-[15px] font-semibold shadow-md hover:shadow-lg transition-all duration-200 hover:-translate-y-0.5"
-            >
-              Get Early Access
-              <ChevronRight className="h-4 w-4" />
-            </a>
-            <button
-              type="button"
-              onClick={() => setOpen(true)}
-              className="md:hidden inline-flex items-center justify-center rounded-full border border-gray-200 p-2.5 hover:bg-gray-50 transition-colors"
-              aria-label="Open menu"
-              aria-controls="mobile-menu"
-              aria-expanded={open}
-            >
-              <Menu className="h-5 w-5 text-textBody" />
-            </button>
+            {/* NAV */}
+            <nav className="hidden lg:flex items-center gap-8 ml-16">
+              {menuItems.map((item) => {
+                const active = isActive(item.href);
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className={`relative px-1 py-2 text-[18px] font-medium tracking-tight transition-all duration-500 group ${
+                      active ? "text-purple-600" : "text-gray-800 hover:text-purple-600"
+                    }`}
+                  >
+                    {item.label}
+                    <span
+                      className={`absolute bottom-0 left-0 right-0 h-[3px] bg-gradient-to-r from-purple-500 to-purple-600 rounded-full transition-transform duration-500 origin-center ${
+                        active ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                      }`}
+                    />
+                  </Link>
+                );
+              })}
+            </nav>
+
+            {/* CTA */}
+            <div className="hidden lg:flex items-center">
+              <Link
+                href="#waitlist"
+                className="relative bg-gradient-to-r from-purple-600 to-purple-700 text-white px-7 py-3.5 rounded-2xl text-[18px] font-semibold shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-105 active:scale-95 group overflow-hidden"
+              >
+                <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+                <span className="relative">Join Waitlist</span>
+              </Link>
+            </div>
+
+            {/* MOBILE MENU BUTTON */}
+            <div className="flex lg:hidden items-center">
+              <button
+                onClick={() => setIsOpen(true)}
+                aria-label="Open menu"
+                className="p-3 rounded-2xl border border-gray-200 bg-white/80 hover:bg-purple-50 hover:border-purple-200 transition-all duration-300 active:scale-95 shadow-sm"
+              >
+                <Menu className="h-5 w-5 text-gray-700" />
+              </button>
+            </div>
           </div>
-        </Container>
+        </div>
       </header>
 
-      {/* Mobile menu */}
+      {/* MOBILE MENU PORTAL */}
       {mounted &&
         createPortal(
           <div
-            id="mobile-menu"
-            className={`md:hidden fixed inset-0 z-[999] transition-opacity duration-300 ${
-              open ? "opacity-100" : "opacity-0 pointer-events-none"
+            className={`lg:hidden fixed inset-0 z-[999] transition-all duration-600 ${
+              isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
             }`}
-            role="dialog"
-            aria-modal="true"
-            aria-label="Menu"
           >
-            {/* Backdrop */}
             <div
-              className="absolute inset-0 bg-black/20 backdrop-blur-sm"
-              onClick={() => setOpen(false)}
+              onClick={() => setIsOpen(false)}
+              className={`absolute inset-0 bg-black/40 backdrop-blur-md transition-opacity duration-600 ${
+                isOpen ? "opacity-100" : "opacity-0"
+              }`}
             />
-
-            {/* Menu panel */}
             <div
-              className={`absolute right-0 top-0 h-full w-80 max-w-full bg-white shadow-xl transform transition-transform duration-300 ${
-                open ? "translate-x-0" : "translate-x-full"
+              className={`absolute right-0 top-0 h-full w-[90vw] max-w-[380px] bg-white shadow-2xl transform transition-all duration-600 ${
+                isOpen ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"
               }`}
             >
-              {/* Top bar */}
-              <div className="h-16 px-6 border-b border-gray-100 flex items-center justify-between">
-                <Link
-                  href="/"
-                  className="flex items-center gap-2 font-semibold text-textMain"
-                  onClick={() => setOpen(false)}
-                >
-                  <div className="bg-primary/10 p-1.5 rounded-lg">
-                    <Brain className="h-5 w-5 text-primary" />
+              <div className="flex items-center justify-between p-6 border-b border-gray-100 bg-gradient-to-r from-purple-50/50 to-white">
+                <Link href="/" onClick={() => setIsOpen(false)} className="flex items-center space-x-3">
+                  <div className="bg-gradient-to-br from-purple-500 to-purple-600 p-2 rounded-xl shadow-md">
+                    <Heart className="h-5 w-5 text-white" />
                   </div>
-                  <span className="text-lg">Ubuncare</span>
+                  <div className="flex flex-col">
+                    <span className="text-lg font-bold text-gray-900">Ubuncare</span>
+                    <span className="text-xs text-purple-600 font-medium">Compassionate Support</span>
+                  </div>
                 </Link>
                 <button
-                  type="button"
-                  onClick={() => setOpen(false)}
-                  className="rounded-full border border-gray-200 p-2 hover:bg-gray-50 transition-colors"
-                  aria-label="Close menu"
+                  onClick={() => setIsOpen(false)}
+                  className="p-2 rounded-xl border border-gray-200 bg-white hover:bg-purple-50 hover:border-purple-200 transition-all duration-300 active:scale-95 shadow-sm"
                 >
-                  <X className="h-5 w-5 text-textBody" />
+                  <X className="h-5 w-5 text-gray-600" />
                 </button>
               </div>
 
-              {/* Menu Items */}
-              <nav className="flex-1 overflow-y-auto py-6">
-                <ul className="space-y-2 px-4">
-                  {[
-                    { href: "#features", label: "Features" },
-                    { href: "#why-it-works", label: "Why it Works" },
-                    { href: "#how", label: "How it Works" },
-                    { href: "#faq", label: "FAQs" },
-                    { href: "/contact", label: "Contact" },
-                  ].map((item) => (
-                    <li key={item.href}>
-                      <a
-                        href={item.href}
-                        onClick={() => setOpen(false)}
-                        className="flex items-center justify-between px-4 py-4 rounded-lg text-[16px] text-textBody hover:bg-gray-50 hover:text-primary transition-colors group"
-                      >
-                        <span className="font-medium">{item.label}</span>
-                        <ChevronRight className="h-4 w-4 text-gray-400 group-hover:text-primary transition-colors" />
-                      </a>
-                    </li>
+              <nav className="p-4">
+                <div className="space-y-2">
+                  {menuItems.map((item) => (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      onClick={() => setIsOpen(false)}
+                      className="flex items-center justify-between px-4 py-4 rounded-2xl text-[18px] font-medium text-gray-800 hover:text-purple-600 hover:bg-purple-100/70 transition-all duration-300"
+                    >
+                      <span>{item.label}</span>
+                      <ChevronRight className="h-4 w-4 text-gray-400" />
+                    </Link>
                   ))}
-                </ul>
-
-                {/* CTA under menu */}
-                <div className="px-4 mt-8">
-                  <a
-                    href="#join"
-                    onClick={() => setOpen(false)}
-                    className="flex items-center justify-center gap-2 w-full text-center rounded-full bg-gradient-to-r from-primary to-purple-600 text-white px-6 py-3 text-[16px] font-semibold shadow-md hover:shadow-lg transition-all duration-200 hover:-translate-y-0.5"
-                  >
-                    Get Early Access
-                    <ChevronRight className="h-4 w-4" />
-                  </a>
                 </div>
               </nav>
-
-              {/* Footer */}
-              <div className="border-t border-gray-100 p-6">
-                <p className="text-sm text-textBody/70 text-center">
-                  Compassionate mental health support
-                </p>
-              </div>
             </div>
           </div>,
           document.body
