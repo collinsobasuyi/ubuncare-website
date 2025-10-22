@@ -15,38 +15,6 @@ import {
   Clock,
   Eye,
 } from "lucide-react";
-import { motion, useInView, Variants } from "framer-motion";
-import { useRef } from "react";
-
-// ----------------------
-// Variants (Type Safe)
-// ----------------------
-const fadeInUp: Variants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] },
-  },
-};
-
-const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 30, scale: 0.9 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: { type: "spring", stiffness: 100, damping: 15 },
-  },
-};
-
-const containerVariants: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-};
 
 // ----------------------
 // Features Data
@@ -115,12 +83,8 @@ const trustIndicators = [
 // Component
 // ----------------------
 export default function FeaturesSection() {
-  const sectionRef = useRef(null);
-  const isInView = useInView(sectionRef, { once: true, amount: 0.3 });
-
   return (
     <section
-      ref={sectionRef}
       id="features"
       className="relative py-24 md:py-32 bg-gradient-to-br from-white via-purple-50/30 to-blue-50/30 overflow-hidden"
     >
@@ -131,16 +95,8 @@ export default function FeaturesSection() {
 
       <div className="relative max-w-[100rem] mx-auto px-8 sm:px-10 lg:px-16 xl:px-20">
         {/* Header */}
-        <motion.div
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          variants={containerVariants}
-          className="text-center max-w-4xl mx-auto mb-20"
-        >
-          <motion.div
-            variants={itemVariants}
-            className="inline-flex items-center gap-3 bg-white/80 backdrop-blur-sm rounded-2xl px-6 py-3 border border-purple-200 shadow-sm mb-8"
-          >
+        <div className="text-center max-w-4xl mx-auto mb-20">
+          <div className="inline-flex items-center gap-3 bg-white/80 backdrop-blur-sm rounded-2xl px-6 py-3 border border-purple-200 shadow-sm mb-8">
             <div className="flex items-center gap-2">
               <div className="p-1.5 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg">
                 <Sparkles className="h-4 w-4 text-white" />
@@ -149,72 +105,56 @@ export default function FeaturesSection() {
                 Supportive tools for everyday wellbeing
               </span>
             </div>
-          </motion.div>
+          </div>
 
-          <motion.h2
-            variants={fadeInUp}
-            className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight"
-          >
+          <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
             Everything You Need to{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600">
               Feel Better
             </span>
-          </motion.h2>
+          </h2>
 
-          <motion.p
-            variants={fadeInUp}
-            className="text-xl md:text-2xl text-gray-600 leading-relaxed max-w-3xl mx-auto"
-          >
+          <p className="text-xl md:text-2xl text-gray-600 leading-relaxed max-w-3xl mx-auto">
             A complete toolkit for mental wellbeing — combining AI-guided reflection, 
             evidence-based activities, and uncompromising privacy.
-          </motion.p>
-        </motion.div>
+          </p>
+        </div>
 
         {/* Trust Indicators */}
-        <motion.div
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          variants={containerVariants}
-          className="flex flex-wrap justify-center gap-8 mb-16"
-        >
-          {trustIndicators.map((indicator, index) => (
-            <motion.div
-              key={index}
-              variants={itemVariants}
-              className="flex items-center gap-3 bg-white/80 backdrop-blur-sm rounded-2xl px-6 py-3 border border-gray-200 shadow-sm"
-            >
-              <div className="p-1.5 bg-purple-100 rounded-lg">
-                <indicator.icon className="h-4 w-4 text-purple-600" />
+        <div className="flex flex-wrap justify-center gap-8 mb-16">
+          {trustIndicators.map((indicator, index) => {
+            const Icon = indicator.icon;
+            return (
+              <div
+                key={index}
+                className="flex items-center gap-3 bg-white/80 backdrop-blur-sm rounded-2xl px-6 py-3 border border-gray-200 shadow-sm"
+              >
+                <div className="p-1.5 bg-purple-100 rounded-lg">
+                  <Icon className="h-4 w-4 text-purple-600" />
+                </div>
+                <span className="text-sm font-medium text-gray-700">
+                  {indicator.text}
+                </span>
               </div>
-              <span className="text-sm font-medium text-gray-700">
-                {indicator.text}
-              </span>
-            </motion.div>
-          ))}
-        </motion.div>
+            );
+          })}
+        </div>
 
         {/* Features Grid */}
-        <motion.div
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          variants={containerVariants}
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16"
-        >
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {features.map((feature, index) => {
             const Icon = feature.icon;
             return (
-              <motion.div
+              <div
                 key={index}
-                variants={itemVariants}
-                transition={{ delay: index * 0.05 }}
                 className="group relative"
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-white to-gray-50 rounded-3xl shadow-lg group-hover:shadow-2xl transition-all duration-500" />
-                <div className="absolute inset-0 bg-gradient-to-br from-white to-gray-50 rounded-3xl border border-gray-200/50 group-hover:border-purple-200/50 transition-colors duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-br from-white to-gray-50 rounded-3xl shadow-lg" />
+                <div className="absolute inset-0 bg-gradient-to-br from-white to-gray-50 rounded-3xl border border-gray-200/50" />
                 <div className="relative p-8 h-full flex flex-col">
                   <div className="mb-6">
                     <div
-                      className={`p-4 rounded-2xl ${feature.bgColor} inline-flex group-hover:scale-110 transition-transform duration-300`}
+                      className={`p-4 rounded-2xl ${feature.bgColor} inline-flex`}
                     >
                       <div
                         className={`p-2 rounded-xl bg-gradient-to-r ${feature.color}`}
@@ -233,20 +173,15 @@ export default function FeaturesSection() {
                     {feature.stats}
                   </span>
                 </div>
-              </motion.div>
+              </div>
             );
           })}
-        </motion.div>
+        </div>
 
         {/* Inline Compliance Notice */}
-        <motion.p
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          variants={fadeInUp}
-          className="text-sm text-gray-500 text-center max-w-3xl mx-auto leading-relaxed"
-        >
+        <p className="text-sm text-gray-500 text-center max-w-3xl mx-auto leading-relaxed">
           Ubuncare offers AI wellbeing reflection, not clinical or therapeutic advice.{" "}
-          If you’re in crisis,{" "}
+          If you&apos;re in crisis,{" "}
           <a
             href="#crisis-support"
             className="text-purple-600 font-medium hover:underline"
@@ -254,7 +189,7 @@ export default function FeaturesSection() {
             get help here
           </a>
           .
-        </motion.p>
+        </p>
       </div>
     </section>
   );

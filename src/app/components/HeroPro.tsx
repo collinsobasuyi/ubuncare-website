@@ -7,7 +7,7 @@ export default function HeroPro() {
     <section
       id="hero"
       aria-labelledby="hero-heading"
-      className="relative overflow-hidden pt-28 sm:pt-32 md:pt-36 pb-10 bg-gradient-to-b from-[#F5EFFF] via-[#FAF8FF] to-white animate-gradient-slow"
+      className="relative overflow-hidden pt-28 sm:pt-32 md:pt-36 pb-10 bg-purple-50"
     >
       {/* Ambient aura */}
       <div className="absolute right-[10%] top-[10%] w-[600px] h-[600px] bg-[radial-gradient(circle_at_center,rgba(147,51,234,0.08),transparent)] blur-3xl" />
@@ -43,7 +43,7 @@ export default function HeroPro() {
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-8">
               <a
                 href="#waitlist"
-                className="inline-flex items-center justify-center gap-2 rounded-3xl bg-gradient-to-r from-[#7C3AED] to-[#6D28D9] text-white px-8 py-4 text-base font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
+                className="inline-flex items-center justify-center gap-2 rounded-3xl bg-gradient-to-r from-[#7C3AED] to-[#6D28D9] text-white px-8 py-4 text-base font-semibold shadow-lg"
               >
                 <MessageCircleHeart className="h-5 w-5" />
                 Start a Gentle Conversation
@@ -51,10 +51,10 @@ export default function HeroPro() {
 
               <a
                 href="#how-it-works"
-                className="inline-flex items-center justify-center gap-2 rounded-xl text-purple-700 hover:text-purple-900 text-base font-semibold transition-all duration-300 group"
+                className="inline-flex items-center justify-center gap-2 rounded-xl text-purple-700 hover:text-purple-900 text-base font-semibold"
               >
                 Learn How It Works
-                <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="h-4 w-4" />
               </a>
             </div>
 
@@ -86,7 +86,7 @@ export default function HeroPro() {
               <div className="absolute top-0 left-1/2 -translate-x-1/2 w-20 h-4 bg-black rounded-b-2xl z-20" />
               <div className="relative aspect-[9/16] w-full rounded-[2rem] overflow-hidden bg-gradient-to-br from-purple-50 via-white to-purple-100 flex flex-col p-5 shadow-inner">
                 <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center shadow-md">
-                  <Heart className="h-8 w-8 text-white animate-pulse" />
+                  <Heart className="h-8 w-8 text-white" />
                 </div>
                 <h3 className="font-semibold text-gray-800 text-lg mb-2 text-center">
                   Your Reflection Space
@@ -116,13 +116,13 @@ export default function HeroPro() {
                       <div className="w-2 h-2 bg-purple-600 rounded-full" />
                     </div>
                     <div className="bg-white text-gray-700 px-4 py-3 rounded-2xl rounded-tl-none shadow-sm border border-purple-100">
-                      That’s okay. Would you like to unpack that gently?
+                      That&apos;s okay. Would you like to unpack that gently?
                     </div>
                   </div>
                 </div>
                 <div className="mt-5 p-3 bg-purple-50/80 rounded-xl border border-purple-100 backdrop-blur-sm">
                   <p className="text-xs text-purple-700 text-center leading-relaxed">
-                    No rush — you set the pace, and we’ll move gently together.
+                    No rush — you set the pace, and we&apos;ll move gently together.
                   </p>
                 </div>
               </div>

@@ -39,7 +39,7 @@ export default function Header() {
 
   const menuItems = [
     { href: "#how-it-works", label: "How It Works" },
-    { href: "#ai-coach", label:"Reflection Space"},
+    // { href: "#ai-coach", label:"Reflection Space"},
     { href: "#features", label: "What You'll Get" },
     { href: "#the-science", label: "The Science" },
     { href: "#how-we-help", label: "How We Help" },
