@@ -63,24 +63,32 @@ export default function AICoachSection() {
   return (
     <section
       id="ai-coach"
-      className="relative py-16 md:py-24 bg-white overflow-hidden"
+      className="relative py-6 md:py-14 bg-white overflow-hidden"
     >
-      {/* Subtle Background Glow */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(13,148,136,0.03),transparent)]" />
-      <div className="absolute top-16 right-20 w-72 h-72 bg-teal-100/20 rounded-full blur-3xl" />
-      <div className="absolute bottom-20 left-16 w-96 h-96 bg-teal-50/30 rounded-full blur-3xl" />
+      {/* Background Accents */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(13,148,136,0.04),transparent)]" />
+      <div className="absolute top-12 right-20 w-72 h-72 bg-teal-100/20 rounded-full blur-3xl" />
+      <div className="absolute bottom-12 left-16 w-96 h-96 bg-cyan-100/30 rounded-full blur-3xl" />
 
       <div className="relative w-full max-w-[100rem] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
         {/* Header */}
-        <div className="text-center max-w-4xl mx-auto mb-12 sm:mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+        <div className="text-center max-w-4xl mx-auto mb-10">
+          {/* Tagline */}
+          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-teal-50 to-cyan-50 backdrop-blur-sm rounded-2xl px-5 py-2.5 sm:px-8 sm:py-4 border border-teal-200 shadow-sm mb-6">
+            <Sparkles className="h-4 w-4 sm:h-5 sm:w-5 text-teal-600" />
+            <span className="text-base sm:text-lg md:text-xl font-semibold text-teal-700">
+              Compassionate AI for everyday reflection
+            </span>
+          </div>
+
+          <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold text-gray-900 mb-4 leading-tight">
             A Safe Space for{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-teal-700">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-600">
               Your Thoughts
             </span>
           </h2>
 
-          <p className="text-lg sm:text-xl md:text-2xl text-gray-600 leading-relaxed max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto">
             Explore what&apos;s on your mind through gentle, AI-guided reflection —{" "}
             <span className="text-teal-600 font-semibold">
               private, secure, and judgment-free.
@@ -89,10 +97,10 @@ export default function AICoachSection() {
         </div>
 
         {/* Two-Column Grid */}
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 xl:gap-20 items-start mb-16 lg:mb-24">
+        <div className="grid lg:grid-cols-2 gap-6 lg:gap-10 items-start mb-10">
           {/* Left — Conversation Demo */}
-          <div className="space-y-6">
-            <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+          <div className="space-y-5">
+            <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-5 flex items-center gap-3">
               <MessageCircle className="h-5 w-5 sm:h-6 sm:w-6 text-teal-600" />
               How Reflection Feels
             </h3>
@@ -104,7 +112,7 @@ export default function AICoachSection() {
                   className={`p-4 sm:p-5 rounded-2xl transition-all ${
                     msg.role === "assistant"
                       ? "bg-white border border-teal-100 shadow-sm"
-                      : "bg-gradient-to-r from-teal-600 to-teal-700 text-white shadow-md"
+                      : "bg-gradient-to-r from-teal-600 to-cyan-600 text-white shadow-md"
                   }`}
                 >
                   <div className="flex items-start gap-3 sm:gap-4">
@@ -145,12 +153,12 @@ export default function AICoachSection() {
 
           {/* Right — Companions */}
           <div>
-            <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6 sm:mb-8 flex items-center gap-3">
+            <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-5 flex items-center gap-3">
               <Sparkles className="h-5 w-5 sm:h-6 sm:w-6 text-teal-600" />
               Meet Your Companions
             </h3>
 
-            <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
+            <div className="grid sm:grid-cols-2 gap-4 sm:gap-5">
               {companions.map((companion) => (
                 <div
                   key={companion.name}
@@ -162,7 +170,7 @@ export default function AICoachSection() {
                     >
                       <companion.icon className="h-5 w-5 sm:h-6 sm:w-6 lg:h-8 lg:w-8 text-white" />
                     </div>
-                    <h4 className="font-bold text-gray-900 text-base sm:text-lg mb-2">
+                    <h4 className="font-bold text-gray-900 text-base sm:text-lg mb-1.5">
                       {companion.name}
                     </h4>
                     <p className="text-gray-600 text-xs sm:text-sm leading-relaxed">
