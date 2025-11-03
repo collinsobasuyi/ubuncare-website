@@ -45,7 +45,7 @@ export default function Footer() {
     >
       {/* ---------- Crisis Support Banner ---------- */}
       <section
-        id="crisis-support"
+      
         aria-label="Crisis Support Information"
         className="bg-[#FFE9E9] text-gray-900 px-6 py-12 text-center"
       >

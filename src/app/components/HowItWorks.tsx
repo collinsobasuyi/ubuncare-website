@@ -8,6 +8,7 @@ import {
   BarChart3,
   ClipboardList,
   Shield,
+  Sparkles,
 } from "lucide-react";
 
 export default function HowItWorksSection() {
@@ -16,50 +17,46 @@ export default function HowItWorksSection() {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    // Check if mobile on mount and on resize
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
     checkMobile();
-    window.addEventListener('resize', checkMobile);
-    
+    window.addEventListener("resize", checkMobile);
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) controls.start("visible");
       },
-      { threshold: 0.1 } // Reduced threshold for mobile
+      { threshold: 0.1 }
     );
-    
+
     if (ref.current) observer.observe(ref.current);
     return () => {
       observer.disconnect();
-      window.removeEventListener('resize', checkMobile);
+      window.removeEventListener("resize", checkMobile);
     };
   }, [controls]);
 
   const fadeUp: Variants = {
-    hidden: { opacity: 0, y: 20 }, // Reduced y movement for mobile
+    hidden: { opacity: 0, y: 20 },
     visible: (i = 0) => ({
       opacity: 1,
       y: 0,
-      transition: { 
-        duration: 0.6, // Shorter duration for mobile
-        delay: isMobile ? i * 0.1 : i, // Reduced delays for mobile
-        ease: [0.25, 0.1, 0.25, 1] 
+      transition: {
+        duration: 0.6,
+        delay: isMobile ? i * 0.1 : i,
+        ease: [0.25, 0.1, 0.25, 1],
       },
     }),
   };
 
   const scaleIn: Variants = {
-    hidden: { opacity: 0, scale: 0.9 }, // Less scale for mobile
+    hidden: { opacity: 0, scale: 0.9 },
     visible: (i = 0) => ({
       opacity: 1,
       scale: 1,
-      transition: { 
-        duration: 0.5, // Shorter duration
-        delay: isMobile ? i * 0.1 : i, // Reduced delays
-        ease: "easeOut" 
+      transition: {
+        duration: 0.5,
+        delay: isMobile ? i * 0.1 : i,
+        ease: "easeOut",
       },
     }),
   };
@@ -70,16 +67,18 @@ export default function HowItWorksSection() {
       description:
         "Begin with simple, evidence-based check-ins that help you understand your current state without pressure. Our approach focuses on self-awareness, not diagnosis.",
       icon: ClipboardList,
-      color: "from-purple-500 to-pink-500",
-      bgColor: "from-purple-50 to-purple-100/50",
+      color: "from-teal-500 to-teal-600",
+      bgColor: "from-teal-50 to-teal-100/50",
       features: ["PHQ-9 & GAD-7 assessments", "Mood tracking", "Gentle prompts"],
       visual: (
         <div className="relative w-full h-full flex flex-col items-center justify-center p-4 sm:p-6">
-          <div className="absolute inset-0 bg-gradient-to-br from-purple-200/30 to-pink-200/20 rounded-2xl sm:rounded-[2rem]" />
-          <div className="relative z-10 bg-white/90 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg border border-purple-100 w-full max-w-[240px] sm:max-w-[280px]">
+          <div className="absolute inset-0 bg-gradient-to-br from-teal-200/30 to-teal-200/20 rounded-2xl sm:rounded-[2rem]" />
+          <div className="relative z-10 bg-white/90 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg border border-teal-100 w-full max-w-[240px] sm:max-w-[280px]">
             <div className="text-center mb-3 sm:mb-4">
-              <ClipboardList className="h-6 w-6 sm:h-8 sm:w-8 text-purple-600 mx-auto mb-2 sm:mb-3" />
-              <h4 className="font-semibold text-gray-800 text-sm sm:text-lg">How are you feeling?</h4>
+              <ClipboardList className="h-6 w-6 sm:h-8 sm:w-8 text-teal-600 mx-auto mb-2 sm:mb-3" />
+              <h4 className="font-semibold text-gray-800 text-sm sm:text-lg">
+                How are you feeling?
+              </h4>
             </div>
             <div className="space-y-2 sm:space-y-3">
               {["Anxious", "Calm", "Overwhelmed", "Content"].map((mood, i) => (
@@ -89,9 +88,9 @@ export default function HowItWorksSection() {
                   animate="visible"
                   variants={fadeUp}
                   custom={i * 0.1}
-                  className="flex items-center gap-2 sm:gap-3 p-1 sm:p-2 rounded-lg hover:bg-purple-50 transition-colors cursor-pointer"
+                  className="flex items-center gap-2 sm:gap-3 p-1 sm:p-2 rounded-lg hover:bg-teal-50 transition-colors cursor-pointer"
                 >
-                  <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-purple-400" />
+                  <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-teal-400" />
                   <span className="text-xs sm:text-sm text-gray-700">{mood}</span>
                 </motion.div>
               ))}
@@ -99,7 +98,7 @@ export default function HowItWorksSection() {
             <motion.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="w-full mt-3 sm:mt-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white py-2 rounded-lg sm:rounded-xl font-medium text-xs sm:text-sm shadow-md"
+              className="w-full mt-3 sm:mt-4 bg-gradient-to-r from-teal-500 to-teal-600 text-white py-2 rounded-lg sm:rounded-xl font-medium text-xs sm:text-sm shadow-md"
             >
               Continue Reflection
             </motion.button>
@@ -112,12 +111,16 @@ export default function HowItWorksSection() {
       description:
         "Engage in meaningful dialogues with your AI companion that feel genuinely supportive. Get CBT-informed guidance that helps you process thoughts and emotions.",
       icon: MessageCircle,
-      color: "from-blue-500 to-cyan-500",
-      bgColor: "from-blue-50 to-blue-100/50",
-      features: ["CBT-informed responses", "Active listening", "Personalized support"],
+      color: "from-teal-500 to-cyan-500",
+      bgColor: "from-teal-50 to-cyan-100/50",
+      features: [
+        "CBT-informed responses",
+        "Active listening",
+        "Personalized support",
+      ],
       visual: (
         <div className="relative w-full h-full flex flex-col justify-center p-4 sm:p-6">
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-200/30 to-cyan-200/20 rounded-2xl sm:rounded-[2rem]" />
+          <div className="absolute inset-0 bg-gradient-to-br from-teal-200/30 to-cyan-200/20 rounded-2xl sm:rounded-[2rem]" />
           <div className="relative z-10 space-y-3 sm:space-y-4 max-w-[220px] sm:max-w-[280px] mx-auto">
             <motion.div
               initial="hidden"
@@ -126,11 +129,13 @@ export default function HowItWorksSection() {
               custom={0.1}
               className="flex items-start gap-2 sm:gap-3"
             >
-              <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0">
-                <MessageCircle className="h-3 w-3 sm:h-4 sm:w-4 text-blue-600" />
+              <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-teal-100 flex items-center justify-center flex-shrink-0">
+                <MessageCircle className="h-3 w-3 sm:h-4 sm:w-4 text-teal-600" />
               </div>
-              <div className="bg-white rounded-xl sm:rounded-2xl rounded-tl-none px-3 sm:px-4 py-2 sm:py-3 shadow-sm border border-blue-100">
-                <p className="text-xs sm:text-sm text-gray-700">How has your week been so far?</p>
+              <div className="bg-white rounded-xl sm:rounded-2xl rounded-tl-none px-3 sm:px-4 py-2 sm:py-3 shadow-sm border border-teal-100">
+                <p className="text-xs sm:text-sm text-gray-700">
+                  How has your week been so far?
+                </p>
               </div>
             </motion.div>
 
@@ -141,10 +146,10 @@ export default function HowItWorksSection() {
               custom={0.3}
               className="flex items-start gap-2 sm:gap-3 justify-end"
             >
-              <div className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-xl sm:rounded-2xl rounded-tr-none px-3 sm:px-4 py-2 sm:py-3 shadow-md max-w-[85%]">
+              <div className="bg-gradient-to-r from-teal-500 to-teal-600 text-white rounded-xl sm:rounded-2xl rounded-tr-none px-3 sm:px-4 py-2 sm:py-3 shadow-md max-w-[85%]">
                 <p className="text-xs sm:text-sm">A bit stressful, but managing</p>
               </div>
-              <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 flex items-center justify-center flex-shrink-0">
+              <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-gradient-to-r from-teal-500 to-teal-600 flex items-center justify-center flex-shrink-0">
                 <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-white rounded-full" />
               </div>
             </motion.div>
@@ -156,109 +161,15 @@ export default function HowItWorksSection() {
               custom={0.6}
               className="flex items-start gap-2 sm:gap-3"
             >
-              <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0">
-                <MessageCircle className="h-3 w-3 sm:h-4 sm:w-4 text-blue-600" />
+              <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-teal-100 flex items-center justify-center flex-shrink-0">
+                <MessageCircle className="h-3 w-3 sm:h-4 sm:w-4 text-teal-600" />
               </div>
-              <div className="bg-white rounded-xl sm:rounded-2xl rounded-tl-none px-3 sm:px-4 py-2 sm:py-3 shadow-sm border border-blue-100">
+              <div className="bg-white rounded-xl sm:rounded-2xl rounded-tl-none px-3 sm:px-4 py-2 sm:py-3 shadow-sm border border-teal-100">
                 <p className="text-xs sm:text-sm text-gray-700">
                   That sounds challenging. What&apos;s been most helpful when you feel stressed?
                 </p>
               </div>
             </motion.div>
-          </div>
-        </div>
-      ),
-    },
-    {
-      title: "Track Your Progress Visually",
-      description:
-        "See your wellbeing journey unfold through beautiful, encrypted visualizations. Notice patterns and celebrate small wins in your mental health journey.",
-      icon: BarChart3,
-      color: "from-green-500 to-emerald-500",
-      bgColor: "from-green-50 to-green-100/50",
-      features: ["Encrypted data storage", "Progress trends", "Milestone tracking"],
-      visual: (
-        <div className="relative w-full h-full flex flex-col items-center justify-center p-4 sm:p-6">
-          <div className="absolute inset-0 bg-gradient-to-br from-green-200/30 to-emerald-200/20 rounded-2xl sm:rounded-[2rem]" />
-          <div className="relative z-10 bg-white/90 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg border border-green-100 w-full max-w-[240px] sm:max-w-[280px]">
-            <div className="text-center mb-4 sm:mb-6">
-              <BarChart3 className="h-6 w-6 sm:h-8 sm:w-8 text-green-600 mx-auto mb-2" />
-              <h4 className="font-semibold text-gray-800 text-sm sm:text-base">Your Wellbeing Trend</h4>
-              <p className="text-xs text-gray-500 mt-1">Last 30 days</p>
-            </div>
-            <div className="h-24 sm:h-32 relative">
-              <svg className="w-full h-full" viewBox="0 0 200 100">
-                <path
-                  d="M20,80 L60,60 L100,40 L140,30 L180,20"
-                  fill="none"
-                  stroke="url(#gradient)"
-                  strokeWidth="3"
-                  strokeLinecap="round"
-                />
-                <defs>
-                  <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stopColor="#10b981" />
-                    <stop offset="100%" stopColor="#059669" />
-                  </linearGradient>
-                </defs>
-              </svg>
-              {[20, 60, 100, 140, 180].map((x, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ delay: i * 0.1 }}
-                  className="absolute w-2 h-2 sm:w-3 sm:h-3 bg-green-500 rounded-full border-2 border-white shadow-sm"
-                  style={{ left: `${x - 4}px`, bottom: `${[80, 60, 40, 30, 20][i] - 4}px` }}
-                />
-              ))}
-            </div>
-            <div className="flex justify-between items-center mt-3 sm:mt-4 text-xs text-gray-600">
-              <span>Feeling better</span>
-              <span className="text-green-600 font-semibold">↑ 42% improvement</span>
-            </div>
-          </div>
-        </div>
-      ),
-    },
-    {
-      title: "Receive Personalized Insights",
-      description:
-        "Get AI-powered reflections that help you understand your emotional patterns and build resilience. Discover personalized strategies for maintaining mental wellbeing.",
-      icon: Brain,
-      color: "from-orange-500 to-amber-500",
-      bgColor: "from-orange-50 to-amber-100/50",
-      features: ["Pattern recognition", "Personalized tips", "Growth opportunities"],
-      visual: (
-        <div className="relative w-full h-full flex flex-col items-center justify-center p-4 sm:p-6">
-          <div className="absolute inset-0 bg-gradient-to-br from-orange-200/30 to-amber-200/20 rounded-2xl sm:rounded-[2rem]" />
-          <div className="relative z-10 bg-white/90 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg border border-amber-100 w-full max-w-[240px] sm:max-w-[280px]">
-            <div className="text-center mb-3 sm:mb-4">
-              <Brain className="h-6 w-6 sm:h-8 sm:w-8 text-amber-600 mx-auto mb-2 sm:mb-3" />
-              <h4 className="font-semibold text-gray-800 text-sm sm:text-base">Your Weekly Insight</h4>
-            </div>
-            <div className="space-y-3 sm:space-y-4">
-              {[
-                "You're most productive in the mornings",
-                "Taking short breaks helps maintain focus",
-                "Celebrate your consistency this week! 🎉",
-              ].map((text, i) => (
-                <motion.div
-                  key={i}
-                  initial="hidden"
-                  animate="visible"
-                  variants={fadeUp}
-                  custom={0.2 + i * 0.2}
-                  className={`rounded-lg sm:rounded-xl p-2 sm:p-3 ${
-                    i === 2
-                      ? "bg-gradient-to-r from-amber-500 to-orange-500 text-white"
-                      : "bg-amber-50 border border-amber-200 text-amber-800"
-                  }`}
-                >
-                  <p className="text-xs sm:text-sm font-medium">{text}</p>
-                </motion.div>
-              ))}
-            </div>
           </div>
         </div>
       ),
@@ -269,29 +180,36 @@ export default function HowItWorksSection() {
     <section
       ref={ref}
       id="how-it-works"
-      className="relative overflow-hidden pt-20 sm:pt-28 md:pt-32 pb-10 bg-purple-50"
+      className="relative overflow-hidden py-6 md:py-14 bg-white"
     >
-      {/* Background glows - simplified for mobile */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(139,92,246,0.08),transparent)]" />
-      <div className="absolute top-0 left-0 w-48 h-48 sm:w-96 sm:h-96 bg-purple-200/20 rounded-full blur-2xl sm:blur-3xl" />
-      <div className="absolute bottom-0 right-0 w-48 h-48 sm:w-96 sm:h-96 bg-blue-200/20 rounded-full blur-2xl sm:blur-3xl" />
+      {/* Background glows */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(13,148,136,0.03),transparent)]" />
+      <div className="absolute top-0 left-0 w-48 h-48 sm:w-96 sm:h-96 bg-teal-100/20 rounded-full blur-2xl sm:blur-3xl" />
+      <div className="absolute bottom-0 right-0 w-48 h-48 sm:w-96 sm:h-96 bg-cyan-100/20 rounded-full blur-2xl sm:blur-3xl" />
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative w-full max-w-[100rem] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
         {/* Header */}
         <motion.div
           initial="hidden"
           animate={controls}
           variants={fadeUp}
           custom={0.1}
-          className="text-center max-w-3xl mx-auto mb-12 sm:mb-16"
+          className="text-center max-w-4xl mx-auto mb-10"
         >
+          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-teal-50 to-cyan-50 backdrop-blur-sm rounded-2xl px-5 py-2.5 sm:px-8 sm:py-4 border border-teal-200 shadow-sm mb-6">
+            <Sparkles className="h-4 w-4 sm:h-5 sm:w-5 text-teal-600" />
+            <span className="text-base sm:text-lg md:text-xl font-semibold text-teal-700">
+              How Ubuncare works
+            </span>
+          </div>
+
           <motion.h2
             variants={fadeUp}
             custom={0.3}
-            className="text-2xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight"
+            className="text-3xl sm:text-4xl md:text-6xl font-bold text-gray-900 mb-4 leading-tight"
           >
             Your Journey to{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-600">
               Feeling Better
             </span>
           </motion.h2>
@@ -299,84 +217,109 @@ export default function HowItWorksSection() {
           <motion.p
             variants={fadeUp}
             custom={0.4}
-            className="text-base sm:text-lg md:text-xl text-gray-600 leading-relaxed"
+            className="text-base sm:text-lg md:text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto"
           >
-            Four simple steps that work together to support your mental wellbeing,
-            with compassion and privacy at every stage.
+            Four gentle steps that guide you toward balance — powered by cognitive science, 
+            compassionate AI, and your own reflections.
           </motion.p>
         </motion.div>
 
         {/* Steps */}
-        <div className="space-y-16 sm:space-y-24">
-          {steps.map((step, index) => (
-            <motion.div
-              key={index}
-              className={`flex flex-col lg:grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center ${
-                index % 2 === 1 ? "lg:flex-row-reverse" : ""
-              }`}
-              initial="hidden"
-              animate={controls}
-              variants={fadeUp}
-              custom={0.5 + index * 0.2}
-            >
-              {/* Visual - always on top for mobile */}
-              <div className="flex justify-center order-1 w-full">
-                <motion.div
-                  variants={scaleIn}
-                  custom={0.6 + index * 0.2}
-                  className="relative group w-full max-w-xs sm:max-w-sm"
-                >
-                  <div
-                    className={`absolute inset-0 bg-gradient-to-br ${step.color} opacity-10 rounded-2xl sm:rounded-[2.5rem] blur-lg sm:blur-xl group-hover:opacity-20 transition-opacity duration-500`}
-                  />
-                  <div
-                    className={`relative bg-gradient-to-br ${step.bgColor} rounded-2xl sm:rounded-[2.5rem] border-2 border-white/50 shadow-xl sm:shadow-2xl group-hover:shadow-3xl transition-all duration-500 group-hover:scale-105 overflow-hidden h-80 sm:h-96`}
+        <div className="space-y-16 lg:space-y-20">
+          {steps.map((step, index) => {
+            const Icon = step.icon;
+            const textOrderLg = index % 2 === 0 ? "lg:order-1" : "lg:order-2";
+            const visualOrderLg = index % 2 === 0 ? "lg:order-2" : "lg:order-1";
+
+            return (
+              <motion.div
+                key={index}
+                className="grid lg:grid-cols-2 gap-8 lg:gap-14 items-center"
+                initial="hidden"
+                animate={controls}
+                variants={fadeUp}
+                custom={0.5 + index * 0.2}
+              >
+                {/* TEXT */}
+                <div className={`order-1 ${textOrderLg} space-y-4 sm:space-y-5`}>
+                  <motion.div
+                    variants={fadeUp}
+                    custom={0.7 + index * 0.2}
+                    className="flex items-center gap-3 sm:gap-4"
                   >
-                    {step.visual}
-                  </div>
-                  <div
-                    className={`absolute -top-3 -left-3 sm:-top-4 sm:-left-4 w-12 h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl bg-gradient-to-br ${step.color} flex items-center justify-center shadow-lg`}
-                  >
-                    <span className="text-white font-bold text-sm sm:text-lg">{index + 1}</span>
-                  </div>
-                </motion.div>
-              </div>
-
-              {/* Text content */}
-              <div className="space-y-4 sm:space-y-6 order-2">
-                <motion.div variants={fadeUp} custom={0.7 + index * 0.2} className="flex items-center gap-3 sm:gap-4">
-                  <div className={`p-2 sm:p-3 rounded-xl sm:rounded-2xl bg-gradient-to-br ${step.color} shadow-lg`}>
-                    <step.icon className="h-5 w-5 sm:h-7 sm:w-7 text-white" />
-                  </div>
-                  <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900">{step.title}</h3>
-                </motion.div>
-
-                <motion.p
-                  variants={fadeUp}
-                  custom={0.8 + index * 0.2}
-                  className="text-base sm:text-lg text-gray-600 leading-relaxed"
-                >
-                  {step.description}
-                </motion.p>
-
-                <motion.div variants={fadeUp} custom={0.9 + index * 0.2} className="space-y-2 sm:space-y-3">
-                  {step.features.map((feature, i) => (
-                    <div key={i} className="flex items-center gap-2 sm:gap-3 text-gray-700">
-                      <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-purple-500 rounded-full flex-shrink-0" />
-                      <span className="text-sm font-medium">{feature}</span>
+                    <div className={`p-2 sm:p-3 rounded-xl sm:rounded-2xl bg-gradient-to-br ${step.color} shadow-md`}>
+                      <Icon className="h-5 w-5 sm:h-7 sm:w-7 text-white" />
                     </div>
-                  ))}
-                </motion.div>
+                    <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900">
+                      {step.title}
+                    </h3>
+                  </motion.div>
 
-                <motion.div variants={fadeUp} custom={1.0 + index * 0.2} className="flex items-center gap-2 sm:gap-3 pt-3 sm:pt-4">
-                  <Shield className="h-4 w-4 text-gray-400" />
-                  <span className="text-xs sm:text-sm text-gray-500">
-                    Always encrypted and private
-                  </span>
-                </motion.div>
-              </div>
-            </motion.div>
-          ))}
+                  <motion.p
+                    variants={fadeUp}
+                    custom={0.8 + index * 0.2}
+                    className="text-base sm:text-lg text-gray-600 leading-relaxed"
+                  >
+                    {step.description}
+                  </motion.p>
+
+                  <motion.div
+                    variants={fadeUp}
+                    custom={0.9 + index * 0.2}
+                    className="space-y-2 sm:space-y-3"
+                  >
+                    {step.features.map((feature, i) => (
+                      <div
+                        key={i}
+                        className="flex items-center gap-2 sm:gap-3 text-gray-700"
+                      >
+                        <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-teal-500 rounded-full flex-shrink-0" />
+                        <span className="text-sm sm:text-base font-medium">
+                          {feature}
+                        </span>
+                      </div>
+                    ))}
+                  </motion.div>
+
+                  <motion.div
+                    variants={fadeUp}
+                    custom={1.0 + index * 0.2}
+                    className="flex items-center gap-2 sm:gap-3 pt-3 sm:pt-4"
+                  >
+                    <Shield className="h-4 w-4 sm:h-5 sm:w-5 text-teal-600" />
+                    <span className="text-xs sm:text-sm text-gray-600">
+                      Always encrypted and private
+                    </span>
+                  </motion.div>
+                </div>
+
+                {/* VISUAL */}
+                <div className={`order-2 ${visualOrderLg} flex justify-center w-full`}>
+                  <motion.div
+                    variants={scaleIn}
+                    custom={0.6 + index * 0.2}
+                    className="relative group w-full max-w-xs sm:max-w-sm"
+                  >
+                    <div
+                      className={`absolute inset-0 bg-gradient-to-br ${step.color} opacity-10 rounded-2xl sm:rounded-[2.5rem] blur-lg sm:blur-xl group-hover:opacity-20 transition-opacity duration-500`}
+                    />
+                    <div
+                      className={`relative bg-gradient-to-br ${step.bgColor} rounded-2xl sm:rounded-[2.5rem] border-2 border-white/50 shadow-xl group-hover:scale-105 transition-all duration-500 overflow-hidden h-80 sm:h-96`}
+                    >
+                      {step.visual}
+                    </div>
+                    <div
+                      className={`absolute -top-3 -left-3 sm:-top-4 sm:-left-4 w-12 h-12 sm:w-16 sm:h-16 rounded-xl bg-gradient-to-br ${step.color} flex items-center justify-center shadow-lg`}
+                    >
+                      <span className="text-white font-bold text-sm sm:text-lg">
+                        {index + 1}
+                      </span>
+                    </div>
+                  </motion.div>
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>

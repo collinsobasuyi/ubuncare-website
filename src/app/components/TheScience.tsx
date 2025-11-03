@@ -1,5 +1,3 @@
-
-
 "use client";
 
 import { motion } from "framer-motion";
@@ -15,25 +13,10 @@ import {
 import {
   Heart,
   TrendingUp,
-  Shield,
   Target,
-  Clock,
   Sparkles,
   Zap,
-  Brain,
-  Users,
-  Lock,
 } from "lucide-react";
-
-/* -------------------------------------------------------------------------- */
-/*                               COLOR MAP SAFE                               */
-/* -------------------------------------------------------------------------- */
-const colorClasses = {
-  blue: { bg: "bg-blue-50", text: "text-blue-600", textDark: "text-blue-700" },
-  purple: { bg: "bg-purple-50", text: "text-purple-600", textDark: "text-purple-700" },
-  pink: { bg: "bg-pink-50", text: "text-pink-600", textDark: "text-pink-700" },
-  green: { bg: "bg-green-50", text: "text-green-600", textDark: "text-green-700" },
-};
 
 /* -------------------------------------------------------------------------- */
 /*                             WELLBEING DATASETS                             */
@@ -90,21 +73,12 @@ interface ChartBoxProps {
   title: string;
   data: { week: string; score: number }[];
   lineColor: string;
-  color: keyof typeof colorClasses;
   description: string;
   icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
 }
 
-const ChartBox = ({
-  title,
-  data,
-  lineColor,
-  color,
-  description,
-  icon: Icon,
-}: ChartBoxProps) => {
+const ChartBox = ({ title, data, lineColor, description, icon: Icon }: ChartBoxProps) => {
   const summary = calculateImprovement(data);
-  const c = colorClasses[color];
 
   return (
     <motion.div
@@ -112,11 +86,11 @@ const ChartBox = ({
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
       viewport={{ once: true }}
-      className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300"
+      className="bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-white/60 hover:shadow-2xl transition-all duration-300"
     >
       <div className="flex items-center gap-3 mb-4">
-        <div className={`p-2 rounded-lg ${c.bg}`}>
-          <Icon className={`h-5 w-5 ${c.text}`} />
+        <div className="p-2 bg-gradient-to-br from-teal-100 to-cyan-100 rounded-lg">
+          <Icon className="h-5 w-5 text-teal-600" />
         </div>
         <h4 className="text-lg font-semibold text-gray-900">{title}</h4>
       </div>
@@ -161,99 +135,66 @@ const ChartBox = ({
 };
 
 /* -------------------------------------------------------------------------- */
-/*                              FEATURE PILL BOX                              */
-/* -------------------------------------------------------------------------- */
-interface FeaturePillProps {
-  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
-  text: string;
-  color: keyof typeof colorClasses;
-}
-
-const FeaturePill = ({ icon: Icon, text, color }: FeaturePillProps) => {
-  const c = colorClasses[color];
-  return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.9 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.4 }}
-      className={`flex items-center gap-2 ${c.bg} px-4 py-2 rounded-full`}
-    >
-      <Icon className={`h-4 w-4 ${c.text}`} />
-      <span className={`text-sm font-medium ${c.textDark}`}>{text}</span>
-    </motion.div>
-  );
-};
-
-/* -------------------------------------------------------------------------- */
 /*                                 MAIN SECTION                               */
 /* -------------------------------------------------------------------------- */
 export default function TheScience() {
   return (
     <section
       id="the-science"
-      className="relative py-24 md:py-32 bg-gradient-to-b from-white via-purple-50/20 to-blue-50/20 overflow-hidden"
+      className="relative py-6 md:py-14 bg-gradient-to-b from-white via-teal-50/30 to-cyan-50/30 overflow-hidden"
     >
       {/* Background Accents */}
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-purple-200/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-200/10 rounded-full blur-3xl" />
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-teal-100/20 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-cyan-100/20 rounded-full blur-3xl" />
 
-      <div className="relative max-w-[100rem] mx-auto px-8 sm:px-10 lg:px-16 xl:px-20">
-        {/* HEADER */}
-        <div className="text-center max-w-4xl mx-auto mb-16">
+      <div className="relative w-full max-w-[100rem] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+        {/* Header */}
+        <div className="text-center max-w-4xl mx-auto mb-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm rounded-full px-5 py-2 border border-purple-200 mb-6"
+            className="inline-flex items-center gap-2 bg-gradient-to-r from-teal-50 to-cyan-50 backdrop-blur-sm rounded-2xl px-5 py-2.5 sm:px-8 sm:py-4 border border-teal-200 shadow-sm mb-6"
           >
-            <Sparkles className="h-4 w-4 text-purple-600" />
-            <span className="text-sm font-medium text-purple-700">
+            <Sparkles className="h-4 w-4 sm:h-5 sm:w-5 text-teal-600" />
+            <span className="text-base sm:text-lg md:text-xl font-semibold text-teal-700">
               Support that makes a difference
             </span>
           </motion.div>
 
-          <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold text-gray-900 mb-4 leading-tight">
             Why people find{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-600">
               Ubuncare helpful
             </span>
           </h2>
 
-          <p className="text-lg md:text-xl text-gray-600 leading-relaxed mb-10">
-            Users report feeling more supported and better equipped to handle life’s challenges through regular reflection and gentle guidance.
+          <p className="text-base sm:text-lg md:text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto">
+            Users report feeling more supported and better equipped to handle life’s challenges 
+            through regular reflection and gentle guidance.
           </p>
-
-          <div className="flex flex-wrap justify-center gap-3 mb-16">
-            <FeaturePill icon={Target} text="Evidence-Informed" color="blue" />
-            <FeaturePill icon={Clock} text="Quick Check-ins" color="green" />
-            <FeaturePill icon={Shield} text="Privacy First" color="purple" />
-            <FeaturePill icon={Heart} text="Compassionate Support" color="pink" />
-          </div>
         </div>
 
-        {/* CHARTS */}
-        <div className="grid md:grid-cols-2 gap-10 mb-16">
+        {/* Charts */}
+        <div className="grid md:grid-cols-2 gap-6">
           <ChartBox
             title="Daily Energy"
             data={dataSets.energy}
             lineColor="#3b82f6"
-            color="blue"
             description="How energized and motivated users feel throughout their day"
             icon={Zap}
           />
           <ChartBox
             title="Sense of Calm"
             data={dataSets.calm}
-            lineColor="#8b5cf6"
-            color="purple"
+            lineColor="#14b8a6"
             description="Users’ reported ability to manage stress and find peace"
             icon={Heart}
           />
           <ChartBox
             title="Mental Focus"
             data={dataSets.focus}
-            lineColor="#ec4899"
-            color="pink"
+            lineColor="#06b6d4"
             description="Ability to concentrate and stay present in activities"
             icon={Target}
           />
@@ -261,55 +202,9 @@ export default function TheScience() {
             title="Overall Wellbeing"
             data={dataSets.overall}
             lineColor="#10b981"
-            color="green"
             description="General sense of satisfaction and emotional balance"
             icon={TrendingUp}
           />
-        </div>
-
-        {/* BUILT ON SCIENCE */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-          {[
-            {
-              icon: Brain,
-              title: "Cognitive Science",
-              desc: "Grounded in reflection-based behavioral principles.",
-            },
-            {
-              icon: Shield,
-              title: "Ethical AI",
-              desc: "Designed for fairness, transparency, and empathy.",
-            },
-            {
-              icon: Lock,
-              title: "Privacy by Design",
-              desc: "Minimal data, full encryption, no ads or profiling.",
-            },
-            {
-              icon: Users,
-              title: "Human Oversight",
-              desc: "AI guidance reviewed by mental health experts.",
-            },
-          ].map((item, i) => {
-            const Icon = item.icon;
-            return (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="bg-white rounded-xl p-6 border border-gray-100 shadow-md text-center"
-              >
-                <div className="inline-flex items-center justify-center w-10 h-10 bg-purple-50 rounded-lg mb-3">
-                  <Icon className="h-5 w-5 text-purple-600" />
-                </div>
-                <h4 className="text-md font-semibold text-gray-900 mb-1">
-                  {item.title}
-                </h4>
-                <p className="text-sm text-gray-600">{item.desc}</p>
-              </motion.div>
-            );
-          })}
         </div>
       </div>
     </section>
