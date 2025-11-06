@@ -1,5 +1,5 @@
 import "./globals.css";
-import Header from "./components/Header";
+import Header from "./components/Header/Header";
 import Footer from "./components/Footer";
 import SkipLink from "./components/SkipLink";
 // import StickyJoin from "./components/StickyJoin";
