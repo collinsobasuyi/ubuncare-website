@@ -1,4 +1,4 @@
-import { HeaderClient } from "./HeaderClient";
+import { HeaderClient } from "./HeaderClient"; // Reverted to named import { HeaderClient }
 import type { IMenuItem } from "@/helpers/Types/IMenuItem";
 
 const menuItems: IMenuItem[] = [

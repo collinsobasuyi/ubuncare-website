@@ -8,7 +8,8 @@ export const viewport = { width: "device-width", initialScale: 1 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    // Add the style property here to resolve the hydration mismatch
+    <html lang="en" style={{ scrollBehavior: "auto" }}>
       <body className="min-h-screen flex flex-col overflow-x-hidden">
         <SkipLink />
         <Header />
