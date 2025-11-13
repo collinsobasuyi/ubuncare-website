@@ -1,7 +1,7 @@
 "use client";
 
 import Container from "./Container";
-import { Brain, Lightbulb, Zap, Heart, Shield, AlertCircle } from "lucide-react";
+import { Brain, Lightbulb, Zap, Heart, Shield } from "lucide-react";
 import { motion } from "framer-motion";
 
 const benefits = [
@@ -16,7 +16,7 @@ const benefits = [
     icon: Lightbulb,
     title: "Motivation",
     stat: "3x more likely",
-    description: "to complete tasks", 
+    description: "to complete tasks",
     color: "amber"
   },
   {
@@ -28,7 +28,7 @@ const benefits = [
   },
   {
     icon: Heart,
-    title: "Stress Management", 
+    title: "Stress Management",
     stat: "78% report",
     description: "lower stress levels",
     color: "pink"
