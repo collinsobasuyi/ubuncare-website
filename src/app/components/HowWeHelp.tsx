@@ -1,6 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
 import {
   Cloud,
   Brain,
@@ -11,8 +8,9 @@ import {
   Sparkles,
   Smile,
 } from "lucide-react";
+import type { HelpItem } from "@/helpers/Types/IHelpItem";
 
-const helps = [
+const helps: HelpItem[] = [
   {
     icon: Cloud,
     title: "Managing Stress & Overwhelm",
@@ -55,6 +53,7 @@ export default function HowWeHelp() {
   return (
     <section
       id="how-we-help"
+      data-testid="how-we-help-section"
       className="relative py-6 md:py-14 bg-gradient-to-b from-white via-teal-50/30 to-cyan-50/30 overflow-hidden"
     >
       {/* Subtle background glows */}
@@ -65,24 +64,22 @@ export default function HowWeHelp() {
       <div className="relative w-full max-w-[100rem] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
         {/* Header */}
         <div className="text-center max-w-4xl mx-auto mb-10 md:mb-14">
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+          {/* Replaced motion.div with standard div */}
+          <div
             className="inline-flex items-center gap-2 bg-gradient-to-r from-teal-50 to-cyan-50 backdrop-blur-sm rounded-2xl px-5 py-2.5 sm:px-8 sm:py-4 border border-teal-200 shadow-sm mb-6"
           >
             <Sparkles className="h-4 w-4 sm:h-5 sm:w-5 text-teal-600" />
-            <span className="text-base sm:text-lg md:text-xl font-semibold text-teal-700">
+            <span
+              data-testid="how-we-help-tagline"
+              className="text-base sm:text-lg md:text-xl font-semibold text-teal-700"
+            >
               Supportive tools for everyday wellbeing
             </span>
-          </motion.div>
+          </div>
 
-          <motion.h2
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.05 }}
+          {/* Replaced motion.h2 with standard h2 */}
+          <h2
+            data-testid="how-we-help-title"
             className="text-3xl sm:text-4xl md:text-6xl font-bold text-gray-900 mb-4 md:mb-6 leading-tight"
           >
             How{" "}
@@ -90,19 +87,17 @@ export default function HowWeHelp() {
               Ubuncare
             </span>{" "}
             helps you every day
-          </motion.h2>
+          </h2>
 
-          <motion.p
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
+          {/* Replaced motion.p with standard p */}
+          <p
+            data-testid="how-we-help-description"
             className="text-base sm:text-lg md:text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto"
           >
             Whether you’re dealing with stress, loneliness, burnout, or simply
             trying to stay mindful — Ubuncare adapts to your needs with care,
             empathy, and privacy.
-          </motion.p>
+          </p>
         </div>
 
         {/* Help Cards */}
@@ -110,12 +105,10 @@ export default function HowWeHelp() {
           {helps.map((item, i) => {
             const Icon = item.icon;
             return (
-              <motion.div
+              // Fixed: Removed misplaced comment { /* Replaced motion.div with standard div */ } inside the div tag.
+              <div
                 key={i}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.45, delay: i * 0.05 }}
+                data-testid="help-card"
                 className="group relative bg-white/90 backdrop-blur-sm rounded-2xl p-6 sm:p-7 shadow-lg border border-white/60 hover:shadow-2xl transition-all duration-300"
               >
                 <div
@@ -129,29 +122,33 @@ export default function HowWeHelp() {
                 <p className="text-gray-600 leading-relaxed text-sm sm:text-base">
                   {item.desc}
                 </p>
-              </motion.div>
+              </div>
             );
           })}
         </div>
 
         {/* Final Message */}
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+        {/* Replaced motion.div with standard div */}
+        <div
           className="text-center max-w-3xl mx-auto"
         >
           <Smile className="h-10 w-10 sm:h-12 sm:w-12 text-teal-600 mx-auto mb-4" />
-          <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3">
+          <h3
+            data-testid="final-message-title"
+            className="text-xl sm:text-2xl font-bold text-gray-900 mb-3"
+          >
             Small moments, real emotional care
           </h3>
-          <p className="text-gray-600 text-base sm:text-lg leading-relaxed">
+          <p
+            data-testid="final-message-description"
+            className="text-gray-600 text-base sm:text-lg leading-relaxed"
+          >
             Every check-in, conversation, and reflection is a small act of
             kindness toward yourself. Ubuncare is built to help you notice,
             pause, and reconnect — one day at a time.
           </p>
-        </motion.div>
+        </div>
+
       </div>
     </section>
   );

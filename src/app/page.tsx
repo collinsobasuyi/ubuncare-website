@@ -22,7 +22,6 @@ export default function Page() {
       <TheScience />
       <WhyItWorks />
       <HowWeHelp />
-
       <WaitlistForm />
       <FAQ />
     </>
