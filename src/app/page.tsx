@@ -1,4 +1,4 @@
-import HeroPro from "./components/HeroPro";
+import HeroPro from "./components/HeroPro/HeroPro";
 // import IconCloud from "./components/IconCloud";
 import AICoachSection from "./components/AICoachSection";
 // import SecurityStrip from "./components/SecurityStrip";

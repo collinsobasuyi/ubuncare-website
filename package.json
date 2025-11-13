@@ -6,13 +6,9 @@
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
     "start": "next start",
-    "lint": "next lint",
-    "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
-    "format": "prettier --write .",
-    "prepare": "husky install",
-    "test": "echo \"No tests yet\" && exit 0",
     "cy:open": "cypress open",
-    "test:e2e": "start-server-and-test \"PORT=3001 npm run start\" 3001 cy:run",
+    "start:e2e": "cross-env PORT=3001 npm run start",
+    "test:e2e": "npm run build && start-server-and-test \"npm run start:e2e\" 3001 cy:run",
     "cy:run": "cypress run"
   },
   "lint-staged": {
@@ -40,6 +36,7 @@
     "@types/react-dom": "^19.1.9",
     "@typescript-eslint/eslint-plugin": "^8.43.0",
     "@typescript-eslint/parser": "^8.43.0",
+    "cross-env": "^10.1.0",
     "cypress": "^15.5.0",
     "eslint": "^9.35.0",
     "eslint-config-next": "15.5.2",
@@ -51,8 +48,8 @@
     "husky": "^8.0.0",
     "lint-staged": "^16.1.6",
     "prettier": "^3.6.2",
+    "start-server-and-test": "^2.0.3",
     "tailwindcss": "^4",
-    "typescript": "^5",
-    "start-server-and-test": "^2.0.3"
+    "typescript": "^5"
   }
 }
