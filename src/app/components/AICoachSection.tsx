@@ -1,5 +1,3 @@
-"use client";
-
 import {
   Heart,
   MessageCircle,
@@ -7,10 +5,15 @@ import {
   Brain,
   Smile,
   Sparkles,
+  LucideIcon,
 } from "lucide-react";
 
+
+import type { ConversationMessage, LucideCompanion } from "@/helpers/Types/IAICoachSection";
+
 export default function AICoachSection() {
-  const conversation = [
+
+  const conversation: ConversationMessage[] = [
     {
       role: "user",
       text: "I've been feeling really overwhelmed with work lately...",
@@ -33,28 +36,28 @@ export default function AICoachSection() {
     },
   ];
 
-  const companions = [
+  const companions: LucideCompanion[] = [
     {
       name: "Calm Companion",
-      icon: CloudSun,
+      icon: CloudSun as LucideIcon,
       description: "Helps you pause and find moments of peace",
       gradient: "from-teal-500 to-teal-600",
     },
     {
       name: "Mindful Guide",
-      icon: Brain,
+      icon: Brain as LucideIcon,
       description: "Supports thoughtful reflection and awareness",
       gradient: "from-cyan-500 to-teal-600",
     },
     {
       name: "Support Assistant",
-      icon: Heart,
+      icon: Heart as LucideIcon,
       description: "Offers gentle encouragement and kindness",
       gradient: "from-emerald-500 to-teal-600",
     },
     {
       name: "Care Helper",
-      icon: Smile,
+      icon: Smile as LucideIcon,
       description: "Reminds you to rest and recharge",
       gradient: "from-teal-400 to-teal-600",
     },
@@ -63,6 +66,7 @@ export default function AICoachSection() {
   return (
     <section
       id="ai-coach"
+      data-testid="ai-coach-section"
       className="relative py-6 md:py-14 bg-white overflow-hidden"
     >
       {/* Background Accents */}
@@ -76,19 +80,28 @@ export default function AICoachSection() {
           {/* Tagline */}
           <div className="inline-flex items-center gap-2 bg-gradient-to-r from-teal-50 to-cyan-50 backdrop-blur-sm rounded-2xl px-5 py-2.5 sm:px-8 sm:py-4 border border-teal-200 shadow-sm mb-6">
             <Sparkles className="h-4 w-4 sm:h-5 sm:w-5 text-teal-600" />
-            <span className="text-base sm:text-lg md:text-xl font-semibold text-teal-700">
+            <span
+              data-testid="ai-coach-tagline"
+              className="text-base sm:text-lg md:text-xl font-semibold text-teal-700"
+            >
               Compassionate AI for everyday reflection
             </span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold text-gray-900 mb-4 leading-tight">
+          <h2
+            data-testid="ai-coach-title"
+            className="text-3xl sm:text-4xl md:text-6xl font-bold text-gray-900 mb-4 leading-tight"
+          >
             A Safe Space for{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-600">
               Your Thoughts
             </span>
           </h2>
 
-          <p className="text-base sm:text-lg md:text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto">
+          <p
+            data-testid="ai-coach-description"
+            className="text-base sm:text-lg md:text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto"
+          >
             Explore what&apos;s on your mind through gentle, AI-guided reflection —{" "}
             <span className="text-teal-600 font-semibold">
               private, secure, and judgment-free.
@@ -105,23 +118,25 @@ export default function AICoachSection() {
               How Reflection Feels
             </h3>
 
-            <div className="space-y-4">
+            <div
+              data-testid="conversation-demo"
+              className="space-y-4"
+            >
               {conversation.map((msg, index) => (
                 <div
                   key={index}
-                  className={`p-4 sm:p-5 rounded-2xl transition-all ${
-                    msg.role === "assistant"
-                      ? "bg-white border border-teal-100 shadow-sm"
-                      : "bg-gradient-to-r from-teal-600 to-cyan-600 text-white shadow-md"
-                  }`}
+                  data-testid={`conversation-message-${index + 1}`}
+                  className={`p-4 sm:p-5 rounded-2xl transition-all ${msg.role === "assistant"
+                    ? "bg-white border border-teal-100 shadow-sm"
+                    : "bg-gradient-to-r from-teal-600 to-cyan-600 text-white shadow-md"
+                    }`}
                 >
                   <div className="flex items-start gap-3 sm:gap-4">
                     <div
-                      className={`flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-2xl flex items-center justify-center ${
-                        msg.role === "assistant"
-                          ? "bg-teal-100 border border-teal-200"
-                          : "bg-white/20 border border-white/30"
-                      }`}
+                      className={`flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-2xl flex items-center justify-center ${msg.role === "assistant"
+                        ? "bg-teal-100 border border-teal-200"
+                        : "bg-white/20 border border-white/30"
+                        }`}
                     >
                       {msg.role === "assistant" ? (
                         <Heart className="h-5 w-5 sm:h-6 sm:w-6 text-teal-600" />
@@ -132,11 +147,10 @@ export default function AICoachSection() {
                     <div className="flex-1 min-w-0">
                       <p className="text-base sm:text-lg leading-relaxed">{msg.text}</p>
                       <div
-                        className={`flex items-center gap-2 mt-3 text-sm ${
-                          msg.role === "assistant"
-                            ? "text-teal-600"
-                            : "text-teal-100"
-                        }`}
+                        className={`flex items-center gap-2 mt-3 text-sm ${msg.role === "assistant"
+                          ? "text-teal-600"
+                          : "text-teal-100"
+                          }`}
                       >
                         <span className="font-semibold">
                           {msg.role === "assistant" ? "Ubuncare" : "You"}
@@ -158,10 +172,14 @@ export default function AICoachSection() {
               Meet Your Companions
             </h3>
 
-            <div className="grid sm:grid-cols-2 gap-4 sm:gap-5">
+            <div
+              data-testid="companion-cards-container"
+              className="grid sm:grid-cols-2 gap-4 sm:gap-5"
+            >
               {companions.map((companion) => (
                 <div
                   key={companion.name}
+                  data-testid="companion-card"
                   className="p-4 sm:p-6 bg-white rounded-2xl border border-teal-100 shadow-sm hover:shadow-md transition-all"
                 >
                   <div className="text-center">
@@ -182,6 +200,7 @@ export default function AICoachSection() {
             </div>
           </div>
         </div>
+        {/* I also ensured the main AICoachSection component has a default export, if it didn't already. */}
       </div>
     </section>
   );
