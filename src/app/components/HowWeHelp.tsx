@@ -7,16 +7,8 @@ import {
   Anchor,
   Sparkles,
   Smile,
-  LucideIcon,
 } from "lucide-react";
-
-// Define type for clarity and separation
-type HelpItem = {
-  icon: LucideIcon;
-  title: string;
-  desc: string;
-  color: string;
-};
+import type { HelpItem } from "@/helpers/Types/IHelpItem";
 
 const helps: HelpItem[] = [
   {
