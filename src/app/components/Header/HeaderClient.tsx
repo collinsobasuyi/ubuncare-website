@@ -1,24 +1,21 @@
 "use client";
 
-import { useState, useEffect, useLayoutEffect } from "react";
+import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X, Heart, ChevronRight } from "lucide-react";
 import type { IHeaderClientProps } from "@/helpers/Types/IHeaderClientProps";
 
-// Using a named export to match the named import in Header.tsx
+
 export function HeaderClient({ menuItems }: IHeaderClientProps) {
     const [isOpen, setIsOpen] = useState(false);
     const [mounted, setMounted] = useState(false);
-    // Initial state must be false to match SSR.
     const [scrolled, setScrolled] = useState(false);
     const pathname = usePathname();
 
-    // 1. Mark as mounted after the first client render cycle.
     useEffect(() => setMounted(true), []);
 
-    // 2. Scroll listener and initial check.
     useEffect(() => {
         let ticking = false;
         const handleScroll = () => {
@@ -31,16 +28,11 @@ export function HeaderClient({ menuItems }: IHeaderClientProps) {
             }
         };
 
-        // Forcing the initial scroll check to happen outside of the immediate
-        // hydration lifecycle using a short timeout is the most reliable way
-        // to resolve this specific hydration mismatch caused by window APIs.
         let initialCheckTimeout: number | undefined;
 
         if (typeof window !== 'undefined') {
             window.addEventListener("scroll", handleScroll, { passive: true });
 
-            // Delay the initial state update slightly to run AFTER hydration completes.
-            // This prevents the synchronous re-render (caused by setScrolled) during the hydration phase.
             initialCheckTimeout = window.setTimeout(() => {
                 setScrolled(window.scrollY > 20);
             }, 50);
@@ -70,28 +62,22 @@ export function HeaderClient({ menuItems }: IHeaderClientProps) {
         href === "/" ? pathname === "/" : pathname.startsWith(href);
 
     const getHeaderBg = (): string => {
-        // Style for the contact page is independent of scroll
         if (pathname === "/contact") {
             return "bg-gradient-to-r from-purple-600 to-purple-700 text-white shadow-lg";
         }
 
-        // CRITICAL FIX: If not yet client-mounted, we must return the non-scrolled style
-        // to match the server-rendered HTML and avoid the hydration error.
         const defaultStyle = "bg-gradient-to-b from-[#F8F6FF]/90 to-white/80 backdrop-blur-lg shadow-[0_2px_10px_rgba(147,51,234,0.05)]";
 
         if (!mounted) {
             return defaultStyle;
         }
 
-        // Once mounted, apply the dynamic scroll-based style
         return scrolled
             ? "bg-gradient-to-b from-white/95 to-white/90 backdrop-blur-xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] border-b border-gray-200/40"
             : defaultStyle;
     };
 
-    // Helper function to sanitize HREFs for data-testid (important for Cypress tests)
     const sanitizeHref = (href: string): string => {
-        // Remove leading slash (if present) and hash tags (#)
         return href.replace(/^\/|#/g, '');
     };
 
