@@ -17,9 +17,9 @@ import {
   Sparkles,
   Zap,
 } from "lucide-react";
-
+import type { ChartBoxProps } from "@/helpers/Types/ITheScience";
 /* -------------------------------------------------------------------------- */
-/*                             WELLBEING DATASETS                             */
+/*                             WELLBEING DATASETS                             */
 /* -------------------------------------------------------------------------- */
 const dataSets = {
   energy: [
@@ -57,7 +57,7 @@ const dataSets = {
 };
 
 /* -------------------------------------------------------------------------- */
-/*                              HELPER FUNCTION                               */
+/*                              HELPER FUNCTION                               */
 /* -------------------------------------------------------------------------- */
 function calculateImprovement(data: { score: number }[]): string {
   const start = data[0].score;
@@ -67,21 +67,14 @@ function calculateImprovement(data: { score: number }[]): string {
 }
 
 /* -------------------------------------------------------------------------- */
-/*                               CHART COMPONENT                              */
+/*                               CHART COMPONENT                              */
 /* -------------------------------------------------------------------------- */
-interface ChartBoxProps {
-  title: string;
-  data: { week: string; score: number }[];
-  lineColor: string;
-  description: string;
-  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
-}
-
 const ChartBox = ({ title, data, lineColor, description, icon: Icon }: ChartBoxProps) => {
   const summary = calculateImprovement(data);
 
   return (
     <motion.div
+      data-testid={`chart-box-${title.toLowerCase().replace(/\s/g, '-')}`} 
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
@@ -135,12 +128,13 @@ const ChartBox = ({ title, data, lineColor, description, icon: Icon }: ChartBoxP
 };
 
 /* -------------------------------------------------------------------------- */
-/*                                 MAIN SECTION                               */
+/*                                 MAIN SECTION                               */
 /* -------------------------------------------------------------------------- */
 export default function TheScience() {
   return (
     <section
       id="the-science"
+      data-testid="the-science-section" 
       className="relative py-6 md:py-14 bg-gradient-to-b from-white via-teal-50/30 to-cyan-50/30 overflow-hidden"
     >
       {/* Background Accents */}
@@ -157,26 +151,32 @@ export default function TheScience() {
             className="inline-flex items-center gap-2 bg-gradient-to-r from-teal-50 to-cyan-50 backdrop-blur-sm rounded-2xl px-5 py-2.5 sm:px-8 sm:py-4 border border-teal-200 shadow-sm mb-6"
           >
             <Sparkles className="h-4 w-4 sm:h-5 sm:w-5 text-teal-600" />
-            <span className="text-base sm:text-lg md:text-xl font-semibold text-teal-700">
+            <span 
+              data-testid="the-science-tagline" 
+              className="text-base sm:text-lg md:text-xl font-semibold text-teal-700">
               Support that makes a difference
             </span>
           </motion.div>
 
-          <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold text-gray-900 mb-4 leading-tight">
+          <h2 
+            data-testid="the-science-title" 
+            className="text-3xl sm:text-4xl md:text-6xl font-bold text-gray-900 mb-4 leading-tight">
             Why people find{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-600">
               Ubuncare helpful
             </span>
           </h2>
 
-          <p className="text-base sm:text-lg md:text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto">
+          <p 
+            data-testid="the-science-description" 
+            className="text-base sm:text-lg md:text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto">
             Users report feeling more supported and better equipped to handle life’s challenges 
             through regular reflection and gentle guidance.
           </p>
         </div>
 
-        {/* Charts */}
-        <div className="grid md:grid-cols-2 gap-6">
+        {/* Charts Container */}
+        <div data-testid="charts-container" className="grid md:grid-cols-2 gap-6">
           <ChartBox
             title="Daily Energy"
             data={dataSets.energy}
