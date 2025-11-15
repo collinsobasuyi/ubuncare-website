@@ -10,17 +10,8 @@ import {
   Sparkles,
   Mail,
   Users,
-  LucideIcon, // ✅ type-safe icon
 } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
-
-type FaqItem = {
-  q: string;
-  a: string;
-  icon: LucideIcon;
-  color: string;
-  bgColor: string;
-};
+import type { FaqItem } from "@/helpers/Types/IFAQ";
 
 const faqs: FaqItem[] = [
   {
@@ -109,7 +100,8 @@ export default function FAQ() {
   return (
     <section
       id="faq"
-      className="relative py-6 md:py-14 bg-gradient-to-b from-white via-teal-50/30 to-cyan-50/20 overflow-hidden"
+      data-testid="faq-section"
+      className="relative py-12 md:py-20 bg-gradient-to-b from-white via-teal-50/30 to-cyan-50/20 overflow-hidden font-sans"
       aria-labelledby={`${sectionId}-title`}
     >
       {/* Background glows */}
@@ -129,6 +121,7 @@ export default function FAQ() {
 
           <h2
             id={`${sectionId}-title`}
+            data-testid="faq-title"
             className="text-3xl sm:text-4xl md:text-6xl font-bold text-gray-900 mb-4 md:mb-6 leading-tight"
           >
             Frequently Asked{" "}
@@ -144,7 +137,7 @@ export default function FAQ() {
         </div>
 
         {/* FAQ List */}
-        <div className="max-w-5xl mx-auto space-y-4">
+        <div className="max-w-5xl mx-auto space-y-4" data-testid="faq-list">
           {faqs.map((faq, index) => {
             const Icon = faq.icon;
             const isOpen = openIndex === index;
@@ -152,27 +145,24 @@ export default function FAQ() {
             const btnId = `${sectionId}-btn-${index}`;
 
             return (
-              <motion.div
+              <div
                 key={index}
-                initial={false}
-                animate={{
-                  backgroundColor: isOpen ? "rgba(240,253,250,0.7)" : "rgba(255,255,255,0.9)",
-                  borderColor: isOpen ? "rgba(94,234,212,0.5)" : "rgba(229,231,235,1)",
-                }}
-                transition={{ duration: 0.25 }}
-                className="rounded-2xl border p-5 sm:p-6 transition-colors duration-300 cursor-pointer hover:border-teal-200 hover:bg-teal-50/40"
+                data-testid={`faq-item-${index}`}
+                className={`rounded-2xl border p-5 sm:p-6 transition-colors duration-300 cursor-pointer hover:border-teal-200 hover:bg-teal-50/40 
+                            ${isOpen ? "border-teal-300 bg-teal-50/70 shadow-md" : "border-gray-200 bg-white/90"}`}
               >
                 <button
                   id={btnId}
+                  data-testid={`faq-btn-${index}`}
                   type="button"
-                  className="w-full flex items-center justify-between text-left group"
+                  className="w-full flex items-center justify-between text-left group focus:outline-none focus:ring-2 focus:ring-teal-500 rounded-lg p-1 -m-1"
                   aria-expanded={isOpen}
                   aria-controls={panelId}
                   onClick={() => toggleFAQ(index)}
                   onKeyDown={(e) => onKeyToggle(e, index)}
                 >
                   <div className="flex items-center gap-4">
-                    <div className={`p-3 rounded-xl ${faq.bgColor}`}>
+                    <div className={`p-3 rounded-xl ${faq.bgColor} flex-shrink-0`}>
                       <Icon className={`h-5 w-5 ${faq.color}`} />
                     </div>
                     <h3 className="text-lg sm:text-xl font-semibold text-gray-900 group-hover:text-teal-700 transition-colors">
@@ -180,46 +170,35 @@ export default function FAQ() {
                     </h3>
                   </div>
                   <ChevronDown
-                    className={`h-5 w-5 text-gray-400 transition-transform duration-300 flex-shrink-0 ${
-                      isOpen ? "rotate-180 text-teal-600" : ""
-                    }`}
+                    className={`h-5 w-5 text-gray-400 transition-transform duration-300 flex-shrink-0 ml-4 
+                                    ${isOpen ? "rotate-180 text-teal-600" : ""}`}
                   />
                 </button>
 
-                <AnimatePresence initial={false}>
-                  {isOpen && (
-                    <motion.div
-                      id={panelId}
-                      role="region"
-                      aria-labelledby={btnId}
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: "auto" }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.3, ease: "easeInOut" }}
-                      className="overflow-hidden"
-                    >
-                      <div className="pl-16 pr-2 sm:pr-4 mt-3 sm:mt-4">
-                        <p className="text-sm sm:text-base text-gray-700 leading-relaxed border-l-2 border-teal-200 pl-4">
-                          {faq.a}
-                        </p>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </motion.div>
+                {/* Content Panel - Using max-height/opacity transition for animation */}
+                <div
+                  id={panelId}
+                  data-testid={`faq-answer-${index}`}
+                  role="region"
+                  aria-labelledby={btnId}
+                  className={`transition-all duration-300 ease-in-out overflow-hidden ${isOpen ? "max-h-[300px] opacity-100 mt-4" : "max-h-0 opacity-0"}`}
+                >
+                  <div className="pl-16 pr-2 sm:pr-4">
+                    <p className="text-sm sm:text-base text-gray-700 leading-relaxed border-l-2 border-teal-200 pl-4">
+                      {faq.a}
+                    </p>
+                  </div>
+                </div>
+              </div>
             );
           })}
         </div>
 
         {/* Privacy Assurance Banner */}
-        <motion.div
-          initial={{ opacity: 0, y: 18 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.5 }}
-          className="mt-12 md:mt-14 bg-gradient-to-r from-teal-50 to-cyan-50 border border-teal-100 rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-center gap-5 shadow-sm"
+        <div
+          className="mt-12 md:mt-14 max-w-5xl mx-auto bg-gradient-to-r from-teal-50 to-cyan-50 border border-teal-100 rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-center gap-5 shadow-lg"
         >
-          <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-teal-500 to-cyan-600 flex items-center justify-center shadow">
+          <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-teal-500 to-cyan-600 flex items-center justify-center shadow-md flex-shrink-0">
             <Shield className="h-6 w-6 text-white" />
           </div>
           <div>
@@ -232,14 +211,10 @@ export default function FAQ() {
               psychological safety over engagement metrics.
             </p>
           </div>
-        </motion.div>
+        </div>
 
         {/* Disclaimer */}
-        <motion.div
-          initial={{ opacity: 0, y: 18 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.5 }}
+        <div
           className="mt-10 md:mt-12 max-w-4xl mx-auto"
         >
           <div className="bg-teal-50 border border-teal-200 rounded-2xl p-6 sm:p-8 shadow-sm">
@@ -254,14 +229,10 @@ export default function FAQ() {
               an emergency, contact your local crisis service immediately.
             </p>
           </div>
-        </motion.div>
+        </div>
 
         {/* CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 14 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.45, delay: 0.05 }}
+        <div
           className="mt-10 md:mt-12 text-center"
         >
           <p className="text-gray-700 mb-4 md:mb-5 text-base sm:text-lg md:text-xl">
@@ -269,12 +240,13 @@ export default function FAQ() {
           </p>
           <a
             href="mailto:contact@ubuncare.com"
-            className="inline-flex items-center gap-3 px-6 sm:px-8 py-3.5 sm:py-4 bg-gradient-to-r from-teal-600 to-cyan-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5"
+            data-testid="contact-cta"
+            className="inline-flex items-center gap-3 px-6 sm:px-8 py-3.5 sm:py-4 bg-gradient-to-r from-teal-600 to-cyan-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 ring-4 ring-transparent hover:ring-teal-200/50"
           >
             <Mail className="h-5 w-5" />
             Contact Support
           </a>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
