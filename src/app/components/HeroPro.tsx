@@ -1,134 +1,130 @@
 "use client";
 
-import { Heart, Shield, MessageCircleHeart, ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
+import { Shield, User, Star } from "lucide-react";
+
+const mockMoods = ["😌 Calm", "😊 Happy", "😔 Low", "😰 Anxious"];
+const mockCards = [
+  { emoji: "🧠", text: "Daily mood check-ins" },
+  { emoji: "🌿", text: "Guided breathing & calm" },
+  { emoji: "✨", text: "Gentle self-reflection" },
+];
 
 export default function HeroPro() {
   return (
     <section
-      id="hero"
-      aria-labelledby="hero-heading"
-      className="relative overflow-hidden pt-28 sm:pt-32 md:pt-36 pb-10 bg-[#E6FFFA]"
+      className="relative min-h-screen flex items-center overflow-hidden"
+      style={{ background: "linear-gradient(150deg, #144D3B 0%, #1D6B52 40%, #2E9B78 100%)" }}
+      aria-label="Welcome to Ubuncare"
     >
-      {/* Ambient aura */}
-      <div className="absolute right-[10%] top-[10%] w-[600px] h-[600px] bg-[radial-gradient(circle_at_center,rgba(13,148,136,0.08),transparent)] blur-3xl" />
+      <div aria-hidden="true" className="absolute top-0 right-0 w-[700px] h-[700px] rounded-full pointer-events-none"
+        style={{ background: "radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 65%)", transform: "translate(25%, -25%)" }} />
 
-      <div className="w-full max-w-[100rem] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-[60%_40%] xl:grid-cols-[65%_35%] items-center gap-8 lg:gap-12">
-          {/* LEFT COLUMN */}
-          <div className="text-center lg:text-left order-2 lg:order-1">
-            <h1
-              id="hero-heading"
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-[62px] font-bold leading-tight sm:leading-[1.15] text-gray-900 mb-6 sm:mb-7"
-            >
-              Take a{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-teal-700">
-                mindful pause
-              </span>{" "}
-              when life feels heavy
-            </h1>
+      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-24 pb-16 w-full flex flex-col lg:flex-row items-center gap-14">
 
-            <p className="text-lg sm:text-xl md:text-2xl lg:text-[26px] text-gray-600 max-w-3xl mx-auto lg:mx-0 mb-8 sm:mb-10 leading-relaxed">
-              Ubuncare offers a gentle space for reflection through{" "}
-              <span className="font-medium text-gray-800">
-                AI-guided wellbeing conversations
-              </span>{" "}
-              rooted in proven cognitive behavioural techniques — designed for
-              mindfulness and balance,{" "}
-              <span className="font-medium text-gray-800">
-                not diagnosis or therapy.
+        {/* Copy */}
+        <motion.div
+          initial={{ opacity: 0, y: 28 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.65, ease: "easeOut" }}
+          className="flex-[3] text-center lg:text-left"
+        >
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-white leading-[1.08] tracking-tight mb-5">
+            Check in.<br />
+            Reflect.<br />
+            <span style={{ color: "rgba(255,255,255,0.7)" }}>Find your calm.</span>
+          </h1>
+
+          <p className="text-lg md:text-xl font-medium mb-4" style={{ color: "rgba(255,255,255,0.82)" }}>
+            A gentle daily space to check in, reflect, and find calm.
+          </p>
+
+          <p className="text-base leading-relaxed mb-10 max-w-md mx-auto lg:mx-0" style={{ color: "rgba(255,255,255,0.6)" }}>
+            Guided mood check-ins, breathing exercises, and gentle self-reflection.
+            Designed with your privacy in mind. No account needed.
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start mb-8">
+            <a href="#download"
+              className="px-8 py-4 rounded-2xl bg-white font-bold text-base shadow-xl hover:bg-[#EBF5F0] transition-colors"
+              style={{ color: "#1D6B52" }}>
+              Download Now
+            </a>
+            <a href="#how-it-works"
+              className="px-8 py-4 rounded-2xl font-semibold text-base text-white hover:bg-white/10 transition-colors"
+              style={{ border: "1.5px solid rgba(255,255,255,0.3)" }}>
+              How it works
+            </a>
+          </div>
+
+          <div className="flex flex-wrap justify-center lg:justify-start gap-2">
+            {[
+              { icon: Star,   label: "Free" },
+              { icon: User,   label: "No account needed" },
+              { icon: Shield, label: "Private by design" },
+            ].map(({ icon: Icon, label }) => (
+              <span key={label}
+                className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-sm font-medium"
+                style={{ backgroundColor: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.2)", color: "rgba(255,255,255,0.85)" }}>
+                <Icon className="w-3.5 h-3.5" aria-hidden="true" />
+                {label}
               </span>
-            </p>
-
-            {/* CALL TO ACTIONS */}
-            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 sm:gap-5 mb-8 sm:mb-10">
-              <a
-                href="#waitlist"
-                className="inline-flex items-center justify-center gap-3 rounded-3xl bg-gradient-to-r from-teal-600 to-teal-700 text-white px-6 sm:px-8 lg:px-10 py-4 sm:py-5 text-base sm:text-lg lg:text-[20px] font-semibold shadow-lg hover:scale-105 transition-transform w-full sm:w-auto text-center"
-              >
-                <MessageCircleHeart className="h-5 w-5 sm:h-6 sm:w-6" />
-                Start a Gentle Conversation
-              </a>
-
-              <a
-                href="#how-it-works"
-                className="inline-flex items-center justify-center gap-2 rounded-xl text-teal-700 hover:text-teal-900 text-base sm:text-lg lg:text-[20px] font-semibold w-full sm:w-auto justify-center lg:justify-start mt-2 sm:mt-0"
-              >
-                Learn How It Works
-                <ArrowRight className="h-4 w-4 sm:h-5 sm:w-5" />
-              </a>
-            </div>
-
-            {/* TRUST & DISCLAIMER */}
-            <div className="space-y-3">
-              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 sm:gap-6 text-sm text-gray-600">
-                <div className="flex items-center gap-2">
-                  <Shield className="h-4 w-4 text-teal-600" />
-                  <span>Encrypted & Private</span>
-                </div>
-                <div className="hidden sm:block text-gray-300">•</div>
-                <div className="flex items-center gap-2">
-                  <Heart className="h-4 w-4 text-teal-600" />
-                  <span>Ethically Designed — No Data Sold</span>
-                </div>
-              </div>
-
-              <p className="text-xs text-gray-500 max-w-md mx-auto lg:mx-0 leading-relaxed">
-                Ubuncare is a wellbeing companion. It is not a substitute for
-                therapy or crisis intervention. If you are in distress, please
-                reach out to a licensed professional or helpline.
-              </p>
-            </div>
+            ))}
           </div>
+        </motion.div>
 
-          {/* RIGHT COLUMN — Device Mockup */}
-          <div className="flex justify-center lg:justify-end order-1 lg:order-2 mt-0 lg:mt-0">
-            <div className="relative bg-gray-900 rounded-[2.5rem] p-2 sm:p-3 w-full max-w-[240px] sm:max-w-[260px] lg:max-w-[280px] xl:max-w-[300px] shadow-2xl">
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-16 sm:w-20 h-3 sm:h-4 bg-black rounded-b-2xl z-20" />
-              <div className="relative aspect-[9/16] w-full rounded-[1.8rem] sm:rounded-[2rem] overflow-hidden bg-gradient-to-br from-teal-50 via-white to-teal-100 flex flex-col p-3 sm:p-4 lg:p-5 shadow-inner">
-                <div className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 mx-auto mb-3 sm:mb-4 rounded-2xl bg-gradient-to-br from-teal-500 to-teal-600 flex items-center justify-center shadow-md">
-                  <Heart className="h-5 w-5 sm:h-6 sm:w-6 lg:h-8 lg:w-8 text-white" />
+        {/* Phone mockup */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.15, ease: "easeOut" }}
+          className="flex-[2] flex justify-center lg:justify-end"
+          aria-hidden="true"
+        >
+          <div className="animate-float relative">
+            <div className="w-72 md:w-80 rounded-[48px] overflow-hidden flex flex-col"
+              style={{ height: "580px", backgroundColor: "#FDFAF6", border: "4px solid rgba(255,255,255,0.3)",
+                boxShadow: "0 40px 80px rgba(0,0,0,0.35)" }}>
+              {/* Status bar */}
+              <div className="h-10 flex items-center justify-center flex-shrink-0" style={{ backgroundColor: "#1D6B52" }}>
+                <div className="w-24 h-1.5 rounded-full" style={{ backgroundColor: "rgba(255,255,255,0.25)" }} />
+              </div>
+              {/* Screen */}
+              <div className="flex-1 flex flex-col p-5 gap-3 overflow-hidden">
+                <p className="text-xs font-medium" style={{ color: "#4D7068" }}>Good morning ✨</p>
+                <p className="text-base font-bold" style={{ color: "#1A2420" }}>How are you feeling today?</p>
+                <div className="flex flex-wrap gap-2">
+                  {mockMoods.map((m) => (
+                    <span key={m} className="px-3 py-1.5 rounded-full text-[10px] font-semibold"
+                      style={{ backgroundColor: "#EBF5F0", color: "#1D6B52" }}>{m}</span>
+                  ))}
                 </div>
-                <h3 className="font-semibold text-gray-800 text-base sm:text-lg lg:text-xl mb-1 sm:mb-2 text-center">
-                  Your Reflection Space
-                </h3>
-                <p className="text-gray-600 text-center mb-4 sm:mb-6 leading-relaxed text-xs sm:text-sm">
-                  A calm, private space to gather your thoughts.
-                </p>
-                <div className="space-y-2 sm:space-y-3 text-xs sm:text-sm">
-                  <div className="flex items-start gap-1 sm:gap-2">
-                    <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-teal-100 flex items-center justify-center mt-1">
-                      <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-teal-600 rounded-full" />
+                <div className="flex flex-col gap-2.5 mt-1">
+                  {mockCards.map((f) => (
+                    <div key={f.text} className="flex items-center gap-3 px-3.5 py-3 rounded-2xl"
+                      style={{ backgroundColor: "#FFFFFF", border: "1px solid #E2EBE6" }}>
+                      <span className="text-xl">{f.emoji}</span>
+                      <span className="text-xs font-medium" style={{ color: "#4A5E57" }}>{f.text}</span>
                     </div>
-                    <div className="bg-white text-gray-700 px-3 py-2 sm:px-4 sm:py-3 rounded-2xl rounded-tl-none shadow-sm border border-teal-100 text-xs sm:text-sm">
-                      How have you been feeling lately?
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-1 sm:gap-2 justify-end">
-                    <div className="bg-teal-600 text-white px-3 py-2 sm:px-4 sm:py-3 rounded-2xl rounded-tr-none shadow-sm text-xs sm:text-sm">
-                      A little overwhelmed, honestly.
-                    </div>
-                    <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-teal-600 flex items-center justify-center mt-1">
-                      <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-white rounded-full" />
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-1 sm:gap-2">
-                    <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-teal-100 flex items-center justify-center mt-1">
-                      <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-teal-600 rounded-full" />
-                    </div>
-                    <div className="bg-white text-gray-700 px-3 py-2 sm:px-4 sm:py-3 rounded-2xl rounded-tl-none shadow-sm border border-teal-100 text-xs sm:text-sm">
-                      That&apos;s okay. Would you like to unpack that gently?
-                    </div>
-                  </div>
+                  ))}
                 </div>
-                <div className="mt-3 sm:mt-4 p-2 sm:p-3 bg-teal-50/80 rounded-xl border border-teal-100 backdrop-blur-sm">
-                  <p className="text-xs text-teal-700 text-center leading-relaxed">
-                    No rush — you set the pace, and we&apos;ll move gently together.
-                  </p>
+                <div className="mt-auto py-3.5 rounded-2xl text-center" style={{ backgroundColor: "#1D6B52" }}>
+                  <span className="text-white text-xs font-bold tracking-wide">Start Check-in</span>
                 </div>
               </div>
             </div>
+
+            {/* Badge */}
+            <div className="absolute -right-8 top-24 flex items-center gap-2.5 px-4 py-2.5 rounded-2xl"
+              style={{ backgroundColor: "#FFFFFF", boxShadow: "0 8px 24px rgba(0,0,0,0.12)" }}>
+              <span className="text-xl">🌿</span>
+              <div>
+                <p className="text-xs font-bold" style={{ color: "#1A2420" }}>3-day streak</p>
+                <p className="text-[10px]" style={{ color: "#4D7068" }}>Keep it up!</p>
+              </div>
+            </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -1,29 +1,26 @@
-import HeroPro from "./components/HeroPro";
-// import IconCloud from "./components/IconCloud";
-import AICoachSection from "./components/AICoachSection";
-// import SecurityStrip from "./components/SecurityStrip";
-import FAQ from "./components/FAQ";
-import WaitlistForm from "./components/WaitlistForm";
-import FeaturesSection from "./components/FeaturesSection";
-import WhyItWorks from "./components/WhyItWorks";
-import HowItWorks from "./components/HowItWorks";
-import TheScience from "./components/TheScience";
-import HowWeHelp from "./components/HowWeHelp";
-// import AIResults from "./components/AIResults";
-// import HowItWorks from "./components/HowItWorks";
+import HeroPro          from "./components/HeroPro";
+import HowItWorks       from "./components/HowItWorks";
+import FeaturesSection  from "./components/FeaturesSection";
+import GuidesSection    from "./components/AICoachSection";
+import HowWeHelp        from "./components/HowWeHelp";
+import TheScience       from "./components/TheScience";
+import UbuntuPhilosophy from "./components/UbuntuPhilosophy";
+import CrisisSupport    from "./components/CrisisSupport";
+import DownloadCTA      from "./components/DownloadCTA";
+import FAQ              from "./components/FAQ";
 
 export default function Page() {
   return (
     <>
       <HeroPro />
       <HowItWorks />
-      <AICoachSection />
       <FeaturesSection />
-      <TheScience />
-      <WhyItWorks />
       <HowWeHelp />
-
-      <WaitlistForm />
+      <TheScience />
+      <UbuntuPhilosophy />
+      <CrisisSupport />
+      <GuidesSection />
+      <DownloadCTA />
       <FAQ />
     </>
   );
