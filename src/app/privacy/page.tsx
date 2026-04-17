@@ -59,13 +59,13 @@ export default function PrivacyPage() {
       {/* Header */}
       <div className="py-16 md:py-20" style={{ backgroundColor: "#1D6B52" }}>
         <div className="max-w-3xl mx-auto px-6">
-          <p className="text-sm font-semibold uppercase tracking-widest mb-3" style={{ color: "rgba(255,255,255,0.6)" }}>
+          <p className="text-sm font-semibold uppercase tracking-widest mb-3" style={{ color: "rgba(255,255,255,0.9)" }}>
             Legal
           </p>
           <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-4">
             Privacy Policy
           </h1>
-          <p style={{ color: "rgba(255,255,255,0.7)" }} className="text-base">
+          <p style={{ color: "rgba(255,255,255,0.85)" }} className="text-base">
             Last updated: April 2026
           </p>
         </div>

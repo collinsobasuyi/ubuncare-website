@@ -36,10 +36,10 @@ export default function Footer() {
               </div>
               <span className="text-lg font-bold text-white">Ubuncare</span>
             </div>
-            <p className="text-sm leading-relaxed mb-2" style={{ color: "#4D7068" }}>
+            <p className="text-sm leading-relaxed mb-2" style={{ color: "#8DBDB6" }}>
               Your space for calm &amp; clarity. A compassionate mental-wellness companion, private by design and free to use.
             </p>
-            <p className="text-xs" style={{ color: "#4D7068" }}>Built with care in the UK.</p>
+            <p className="text-xs" style={{ color: "#8DBDB6" }}>Built with care in the UK.</p>
           </div>
 
           {/* Nav */}
@@ -49,7 +49,7 @@ export default function Footer() {
               <ul className="flex flex-col gap-2">
                 {col.links.map((l) => (
                   <li key={l.label}>
-                    <a href={l.href} className="text-sm hover:text-white transition-colors" style={{ color: "#4D7068" }}>
+                    <a href={l.href} className="text-sm hover:text-white transition-colors" style={{ color: "#8DBDB6" }}>
                       {l.label}
                     </a>
                   </li>
@@ -60,7 +60,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs"
-          style={{ borderColor: "#2A2A2A", color: "#4D7068" }}>
+          style={{ borderColor: "#2A2A2A", color: "#8DBDB6" }}>
           <p>© {new Date().getFullYear()} Ubuncare. All rights reserved.</p>
           <p>Not a substitute for professional mental health care. If in crisis, call 999 or Samaritans on 116 123.</p>
         </div>
