@@ -15,7 +15,7 @@ export default function UbuntuPhilosophy() {
             viewport={{ once: true }}
             transition={{ duration: 0.55 }}
           >
-            <p className="text-sm font-semibold uppercase tracking-widest mb-4" style={{ color: "#2E9B78" }}>
+            <p className="text-sm font-semibold uppercase tracking-widest mb-4" style={{ color: "#1D6B52" }}>
               The name behind the app
             </p>
             <h2 className="text-3xl md:text-4xl font-extrabold mb-6 leading-tight" style={{ color: "#1A2420" }}>

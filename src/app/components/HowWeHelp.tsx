@@ -20,7 +20,7 @@ export default function HowWeHelp() {
             Tools for real moments of stress
           </h2>
           <p className="text-base max-w-xl mx-auto" style={{ color: "#4A5E57" }}>
-            Evidence-based micro-exercises you can use in under five minutes.
+            When you need extra support, these tools help you slow down, ground yourself, and reset. All in under five minutes.
           </p>
         </div>
 

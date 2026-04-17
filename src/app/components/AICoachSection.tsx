@@ -3,10 +3,10 @@
 import { motion } from "framer-motion";
 
 const guides = [
-  { name: "Amani", tagline: "Calm & grounded",       emoji: "🌿", accent: "#2E9B78", surface: "#EBF5F0" },
-  { name: "Kora",  tagline: "Warm & encouraging",    emoji: "🔥", accent: "#E9963A", surface: "#FDF3E7" },
-  { name: "Nova",  tagline: "Reflective & insightful",emoji: "🌙", accent: "#5C6BC0", surface: "#F0EDFF" },
-  { name: "Zuri",  tagline: "Gentle & uplifting",    emoji: "✨", accent: "#8E44AD", surface: "#F5EEFF" },
+  { name: "Amani", tagline: "Calm & grounded",        emoji: "🌿", accent: "#2E9B78", textColor: "#1D6B52", surface: "#EBF5F0" },
+  { name: "Kora",  tagline: "Warm & encouraging",     emoji: "🔥", accent: "#E9963A", textColor: "#8B4500", surface: "#FDF3E7" },
+  { name: "Nova",  tagline: "Reflective & insightful",emoji: "🌙", accent: "#5C6BC0", textColor: "#3949A3", surface: "#F0EDFF" },
+  { name: "Zuri",  tagline: "Gentle & uplifting",     emoji: "✨", accent: "#8E44AD", textColor: "#5E2373", surface: "#F5EEFF" },
 ];
 
 const chat = [
@@ -21,10 +21,10 @@ export default function GuidesSection() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-8">
           <h2 className="text-3xl md:text-4xl font-extrabold mb-3" style={{ color: "#1A2420" }}>
-            Meet your wellness guides
+            Choose your wellness guide
           </h2>
           <p className="text-base max-w-xl mx-auto" style={{ color: "#4A5E57" }}>
-            Choose the one that resonates with you. Switch any time from Settings.
+            Each guide brings a different tone to your check-ins. Pick the style that feels right for you. Switch any time from Settings.
           </p>
         </div>
 
@@ -39,7 +39,7 @@ export default function GuidesSection() {
                 style={{ backgroundColor: g.surface, borderColor: g.accent + "35" }}>
                 <div className="w-12 h-12 rounded-full flex items-center justify-center text-2xl mx-auto mb-3"
                   style={{ backgroundColor: g.accent + "18" }}>{g.emoji}</div>
-                <h3 className="font-bold text-base mb-0.5" style={{ color: g.accent }}>{g.name}</h3>
+                <h3 className="font-bold text-base mb-0.5" style={{ color: g.textColor }}>{g.name}</h3>
                 <p className="text-xs" style={{ color: "#4A5E57" }}>{g.tagline}</p>
               </motion.div>
             ))}
@@ -54,7 +54,7 @@ export default function GuidesSection() {
                   style={{ backgroundColor: "rgba(255,255,255,0.15)" }}>🌿</div>
                 <div>
                   <p className="text-white font-semibold text-sm">Amani</p>
-                  <p className="text-xs" style={{ color: "rgba(255,255,255,0.65)" }}>Calm & grounded</p>
+                  <p className="text-xs" style={{ color: "rgba(255,255,255,0.9)" }}>Calm & grounded</p>
                 </div>
               </div>
 
@@ -73,14 +73,14 @@ export default function GuidesSection() {
 
               <div className="px-4 py-3 flex items-center gap-2 border-t"
                 style={{ backgroundColor: "#FFFFFF", borderColor: "#E2EBE6" }}>
-                <div className="flex-1 px-4 py-2 rounded-xl text-sm" style={{ backgroundColor: "#EBF5F0", color: "#4D7068" }}>
+                <div className="flex-1 px-4 py-2 rounded-xl text-sm" style={{ backgroundColor: "#EBF5F0", color: "#2E5048" }}>
                   Type your message…
                 </div>
                 <div className="w-9 h-9 rounded-xl flex items-center justify-center text-white"
                   style={{ backgroundColor: "#1D6B52" }}>→</div>
               </div>
             </div>
-            <p className="text-xs mt-3 text-center" style={{ color: "#4D7068" }}>
+            <p className="text-xs mt-3 text-center" style={{ color: "#2E5048" }}>
               All conversations stay on your device. Nothing is shared.
             </p>
           </motion.div>

@@ -17,14 +17,14 @@ export default function DownloadCTA() {
           transition={{ duration: 0.55 }}
         >
           <p className="text-sm font-semibold uppercase tracking-widest mb-4"
-            style={{ color: "rgba(255,255,255,0.6)" }}>
+            style={{ color: "rgba(255,255,255,0.9)" }}>
             Available now
           </p>
           <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-4 leading-tight">
             Download Ubuncare
           </h2>
-          <p className="text-base mb-10 leading-relaxed" style={{ color: "rgba(255,255,255,0.72)" }}>
-            Free to download. Free to use. Built with your privacy in mind.
+          <p className="text-base mb-10 leading-relaxed" style={{ color: "rgba(255,255,255,0.9)" }}>
+            Free to download. No account needed. No tracking. Everything stays on your device.
           </p>
 
           <div className="flex flex-wrap justify-center gap-4 mb-6">

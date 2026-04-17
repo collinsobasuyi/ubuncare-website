@@ -3,10 +3,10 @@
 import { motion } from "framer-motion";
 
 const lines = [
-  { emoji: "🚨", title: "Emergency",    number: "999",      detail: "Immediate danger. Call now.",                     color: "#C62828" },
-  { emoji: "📞", title: "Samaritans",   number: "116 123",  detail: "Free, 24/7. No judgement.",                       color: "#1D6B52" },
-  { emoji: "💬", title: "Shout",        number: "Text 85258", detail: "Text SHOUT for confidential 24/7 support.",    color: "#5C6BC0" },
-  { emoji: "🏥", title: "NHS 111",      number: "111",      detail: "Non-emergency mental health advice.",             color: "#2E9B78" },
+  { emoji: "🚨", title: "Emergency",    number: "999",        href: "tel:999",     detail: "Immediate danger. Call now.",                   color: "#C62828" },
+  { emoji: "📞", title: "Samaritans",   number: "116 123",    href: "tel:116123",  detail: "Free, 24/7. No judgement.",                     color: "#1D6B52" },
+  { emoji: "💬", title: "Shout",        number: "Text 85258", href: "sms:85258",   detail: "Text SHOUT for confidential 24/7 support.",     color: "#3949A3" },
+  { emoji: "🏥", title: "NHS 111",      number: "111",        href: "tel:111",     detail: "Non-emergency mental health advice.",           color: "#1D6B52" },
 ];
 
 export default function CrisisSupport() {
@@ -43,7 +43,7 @@ export default function CrisisSupport() {
             >
               <span className="text-2xl mb-3 block">{l.emoji}</span>
               <h3 className="font-bold text-sm mb-0.5" style={{ color: l.color }}>{l.title}</h3>
-              <p className="font-extrabold text-lg mb-1" style={{ color: "#1A2420" }}>{l.number}</p>
+              <a href={l.href} className="font-extrabold text-lg mb-1 block hover:underline" style={{ color: "#1A2420" }}>{l.number}</a>
               <p className="text-xs leading-snug" style={{ color: "#4A5E57" }}>{l.detail}</p>
             </motion.div>
           ))}

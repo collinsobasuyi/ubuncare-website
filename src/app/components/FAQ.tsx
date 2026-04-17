@@ -11,31 +11,31 @@ const faqs = [
   },
   {
     q: "Does it store my data?",
-    a: "Everything stays on your device. Your mood history, conversations, and reflections are never uploaded, sold, or shared. You can delete everything from Settings at any time.",
+    a: "No data ever leaves your device. Your mood history, conversations, and reflections are stored locally on your phone and never uploaded, sold, or shared with anyone. You can delete everything from Settings at any time.",
   },
   {
     q: "Do I need an account?",
-    a: "No. Ubuncare requires no account, no login, and no email address. You just open the app and start. Your data lives on your phone.",
+    a: "No account, no login, no email address. You just open the app and start. There is nothing to sign up for and nothing we collect.",
   },
   {
     q: "Is it free?",
-    a: "Yes. The core app (mood check-ins, wellness tools, guide conversations, and history) is completely free.",
+    a: "Yes, completely. Mood check-ins, wellness tools, guide conversations, and history are all free. No subscription, no paywall, no hidden tier.",
   },
   {
     q: "Can I use it alongside therapy?",
-    a: "Absolutely. Many users find it helpful between sessions. It reinforces reflection habits and helps you track how you feel over time.",
+    a: "Absolutely. Many people find it helpful between sessions. It reinforces reflection habits and helps you track how you feel over time. Because everything stays on your device, you stay in full control of what you share.",
   },
   {
     q: "What are the wellness guides?",
-    a: "Amani, Kora, Nova, and Zuri are four wellness guides, each with their own personality. Amani is calm and grounded; Kora is warm and encouraging; Nova is reflective and insightful; Zuri is gentle and uplifting. You pick one at setup and can switch any time.",
+    a: "Amani, Kora, Nova, and Zuri are four wellness guides, each with their own style. Amani is calm and grounded; Kora is warm and encouraging; Nova is reflective and insightful; Zuri is gentle and uplifting. You choose one at setup and can switch any time from Settings.",
   },
   {
     q: "What if I'm in crisis?",
-    a: "Ubuncare is not a crisis service. If you're in danger or distress, please call 999 (emergency), Samaritans on 116 123 (free, 24/7), or text SHOUT to 85258. These numbers are also in the app's crisis screen.",
+    a: "Ubuncare is not a crisis service. If you're in danger or distress, please call 999 (emergency), Samaritans on 116 123 (free, 24/7), or text SHOUT to 85258. These numbers are always one tap away inside the app.",
   },
   {
     q: "Which platforms is it available on?",
-    a: "Ubuncare is being built for iOS and Android. Join the waitlist to be notified when it launches.",
+    a: "Ubuncare is available on iOS and Android. Download it free from the App Store or Google Play.",
   },
 ];
 

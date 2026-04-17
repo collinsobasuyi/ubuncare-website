@@ -30,7 +30,7 @@ export default function FeaturesSection() {
             The tools that matter most
           </h2>
           <p className="text-base max-w-xl mx-auto" style={{ color: "#4A5E57" }}>
-            Five features at the core of every Ubuncare session. Everything else supports them.
+            These are the core tools at the centre of the Ubuncare experience. No account. No tracking. Everything stays on your device.
           </p>
         </div>
 
