@@ -39,9 +39,12 @@ export default function HeroPro() {
             A gentle daily space to check in, reflect, and find calm.
           </p>
 
-          <p className="text-base leading-relaxed mb-10 max-w-md mx-auto lg:mx-0" style={{ color: "rgba(255,255,255,0.6)" }}>
+          <p className="text-base leading-relaxed mb-6 max-w-md mx-auto lg:mx-0" style={{ color: "rgba(255,255,255,0.6)" }}>
             Guided mood check-ins, breathing exercises, and gentle self-reflection.
-            Designed with your privacy in mind. No account needed.
+          </p>
+
+          <p className="text-sm font-semibold mb-8 max-w-md mx-auto lg:mx-0" style={{ color: "rgba(255,255,255,0.9)" }}>
+            No accounts. No tracking. No data leaves your device.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start mb-8">

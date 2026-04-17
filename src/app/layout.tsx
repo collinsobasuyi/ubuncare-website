@@ -14,7 +14,7 @@ const poppins = Poppins({
 export const metadata = {
   title: "Ubuncare — Your space for calm & clarity",
   description:
-    "A private, compassionate mental-wellness app. Daily mood check-ins, guided breathing, and gentle self-reflection. Everything stays on your device.",
+    "A private, compassionate mental-wellness app for daily mood check-ins, guided breathing, and gentle self-reflection. Everything stays on your device.",
 };
 
 export const viewport = { width: "device-width", initialScale: 1 };

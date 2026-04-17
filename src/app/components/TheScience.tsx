@@ -21,7 +21,7 @@ const pillars = [
   {
     emoji: "🧠",
     title: "Evidence-informed tools",
-    desc: "Breathing, grounding, and reflection techniques drawn from CBT and mindfulness research.",
+    desc: "Breathing, grounding, and reflection techniques inspired by CBT and mindfulness research.",
   },
 ];
 
