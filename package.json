@@ -5,7 +5,7 @@
   "scripts": {
     "test": "echo \"No tests specified\"",
     "dev": "next dev --turbopack",
-    "build": "next build --turbopack",
+    "build": "next build",
     "start": "next start",
     "cy:open": "cypress open",
     "start:e2e": "cross-env PORT=3001 npm run start",
