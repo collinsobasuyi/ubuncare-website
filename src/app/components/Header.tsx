@@ -104,7 +104,7 @@ export default function Header() {
         </nav>
 
         {/* CTA */}
-        <a
+        <Link
           href="/#download"
           className={`hidden md:inline-flex items-center px-4 py-2 rounded-xl text-sm font-semibold transition-all shadow-sm ${
             scrolled
@@ -113,7 +113,7 @@ export default function Header() {
           }`}
         >
           Download
-        </a>
+        </Link>
 
         {/* Hamburger */}
         <button
@@ -155,13 +155,13 @@ export default function Header() {
               </a>
             );
           })}
-          <a
+          <Link
             href="/#download"
             onClick={() => setOpen(false)}
             className="mt-2 py-3 rounded-xl bg-[#1D6B52] text-white text-sm font-semibold text-center hover:bg-[#2E9B78] transition-colors"
           >
             Download
-          </a>
+          </Link>
         </div>
       )}
     </header>
